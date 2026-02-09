@@ -1,8 +1,8 @@
 # ATOM01-Train
 
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-5.1.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
-[![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.3.1-silver)](https://isaac-sim.github.io/IsaacLab)
-[![RSL_RL](https://img.shields.io/badge/RSL_RL-3.2.0-silver)](https://github.com/leggedrobotics/rsl_rl)
+[![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.3.2-silver)](https://isaac-sim.github.io/IsaacLab)
+[![RSL_RL](https://img.shields.io/badge/RSL_RL-3.3.0-silver)](https://github.com/leggedrobotics/rsl_rl)
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://releases.ubuntu.com/22.04/)
 [![Windows platform](https://img.shields.io/badge/platform-windows--64-orange.svg)](https://www.microsoft.com/en-us/)
@@ -48,6 +48,7 @@ pip install -e .
 cd ..
 cd rsl_rl
 pip install -e .
+cd ..
 ```
 
 - 通过运行以下命令验证扩展是否正确安装，打印可用环境列表：
@@ -72,6 +73,12 @@ python robolab/scripts/rsl_rl/play.py --task=<ENV_NAME> --num_envs=1
 ```bash
 python robolab/scripts/mujoco/sim2sim_atom01.py --load_model "{exported/policy.pt model full path here}"
 ```
+
+### 数据集准备
+对于 AMP 和 BeyondMimic 获取数据集的工作流程, 请查看 [GMR](https://github.com/Roboparty/GMR).
+
+通过GMR获得的数据集中的关节顺序与机器人的 URDF 和 XML 中的顺序一致，但这与 Isaac Lab 所使用的顺序不同。因此，我们需要准备一个包含关节映射信息的`.yaml`文件（如`scripts/tools/retarget/config/atom01.yaml`所示），并在训练前使用`scripts/tools/retarget/dataset_retarget.py`重新排序关节序列。
+
 
 ## 参考和致谢
 本项目仓库建立在巨人的肩膀上。

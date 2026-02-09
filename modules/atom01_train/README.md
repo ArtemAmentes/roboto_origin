@@ -1,8 +1,8 @@
 # ATOM01-Train
 
 [![IsaacSim](https://img.shields.io/badge/IsaacSim-5.1.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html)
-[![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.3.1-silver)](https://isaac-sim.github.io/IsaacLab)
-[![RSL_RL](https://img.shields.io/badge/RSL_RL-3.2.0-silver)](https://github.com/leggedrobotics/rsl_rl)
+[![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.3.2-silver)](https://isaac-sim.github.io/IsaacLab)
+[![RSL_RL](https://img.shields.io/badge/RSL_RL-3.3.0-silver)](https://github.com/leggedrobotics/rsl_rl)
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html)
 [![Linux platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://releases.ubuntu.com/22.04/)
 [![Windows platform](https://img.shields.io/badge/platform-windows--64-orange.svg)](https://www.microsoft.com/en-us/)
@@ -74,6 +74,10 @@ python robolab/scripts/rsl_rl/play.py --task=<ENV_NAME> --num_envs=1
 python robolab/scripts/mujoco/sim2sim_atom01.py --load_model "{exported/policy.pt model full path here}"
 ```
 
+### Prepare Motion Data
+To obtain dataset for AMP and BeyondMimic, please visit [GMR](https://github.com/Roboparty/GMR).
+
+The joint order in the dataset obtained via GMR corresponds to the order in Robot URDF and XML, which differs from the one used in Isaac Lab. Therefore, we need to prepare a `.yaml` file which contains joint mapping information like the one showed in `scripts/tools/retarget/config/atom01.yaml`, and then reorder the joint sequence using `scripts/tools/retarget/dataset_retarget.py` before training.
 
 ## References and Thanks
 This project repository builds upon the shoulders of giants.
