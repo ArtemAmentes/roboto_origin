@@ -82,7 +82,7 @@ typedef struct {
 class DmMotorDriver : public MotorDriver {
    public:
     DmMotorDriver(uint16_t motor_id, const std::string& interface_type, const std::string& can_interface, uint16_t master_id_offset,
-                  DM_Motor_Model motor_model);
+                  DM_Motor_Model motor_model, double motor_zero_offset = 0.0);
     ~DmMotorDriver();
 
     virtual void lock_motor() override;
@@ -105,6 +105,7 @@ class DmMotorDriver : public MotorDriver {
     virtual void clear_motor_error() override;
 
    private:
+    uint16_t master_id_;
     std::atomic<int> response_count_{0};
     bool param_cmd_flag_[30] = {false};
     DM_Motor_Model motor_model_;
@@ -115,7 +116,7 @@ class DmMotorDriver : public MotorDriver {
     void clear_motor_error_dm();
     void write_register_dm(uint8_t rid, float value);
     void write_register_dm(uint8_t rid, int32_t value);
-    void save_register_dm(uint8_t rid);
+    void save_register_dm();
     virtual void can_rx_cbk(const can_frame& rx_frame);
     std::shared_ptr<SocketCAN> can_;
 };
