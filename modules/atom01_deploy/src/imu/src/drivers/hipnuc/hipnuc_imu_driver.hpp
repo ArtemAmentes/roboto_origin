@@ -2,10 +2,10 @@
 
 extern "C" {
 #include "hipnuc_dec.h"
-#include "nmea_decode.h"
+// #include "nmea_decode.h"
 #include "hipnuc_can_common.h"
 #include "hipnuc_j1939_parser.h"
-#include "canopen_parser.h"
+// #include "canopen_parser.h"
 }
 
 #include <memory>
@@ -34,7 +34,6 @@ class HipnucIMUDriver : public IMUDriver {
     float get_temperature() override;
 
    private:
-    uint16_t imu_id_;
     int baudrate_;
     std::string interface_type_;
     std::string interface_;
