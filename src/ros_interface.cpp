@@ -32,6 +32,7 @@ void InferenceNode::load_config() {
     this->declare_parameter<std::vector<double>>("clip_cmd", std::vector<double>{});
     this->declare_parameter<std::vector<double>>("joint_default_angle", std::vector<double>{});
     this->declare_parameter<std::vector<double>>("joint_limits", std::vector<double>{});
+    this->declare_parameter<float>("gravity_z_upper", -0.5);
 
 
     this->get_parameter("model_name", model_name_);
@@ -65,6 +66,7 @@ void InferenceNode::load_config() {
     this->get_parameter("clip_cmd", clip_cmd_);
     this->get_parameter("joint_default_angle", joint_default_angle_);
     this->get_parameter("joint_limits", joint_limits_);
+    this->get_parameter("gravity_z_upper", gravity_z_upper_);
 
 
     model_path_ = std::string(ROOT_DIR) + "models/" + model_name_;
@@ -96,6 +98,7 @@ void InferenceNode::load_config() {
     print_vector<double>("clip_cmd", clip_cmd_);
     print_vector<double>("joint_default_angle", joint_default_angle_);
     print_vector<double>("joint_limits", joint_limits_);
+    RCLCPP_INFO(this->get_logger(), "gravity_z_upper: %f", gravity_z_upper_);
 }
 
 void InferenceNode::subs_joy_callback(const std::shared_ptr<sensor_msgs::msg::Joy> msg) {
@@ -147,11 +150,16 @@ void InferenceNode::subs_joy_callback(const std::shared_ptr<sensor_msgs::msg::Jo
     if (use_interrupt_ || use_beyondmimic_) {
         if (msg->buttons[4] == 1 && msg->buttons[4] != last_button4_) {
             if(use_interrupt_){
+                is_running_.store(false);
+                RCLCPP_INFO(this->get_logger(), "Inference paused");
+                std::this_thread::sleep_for(std::chrono::milliseconds(50));
                 is_interrupt_.store(!is_interrupt_.load());
+                std::this_thread::sleep_for(std::chrono::milliseconds(50));
                 RCLCPP_INFO(this->get_logger(), "Interrupt mode %s", is_interrupt_.load() ? "enabled" : "disabled");
             }
-            if(use_beyondmimic_){
+            else if(use_beyondmimic_){
                 is_running_.store(false);
+                RCLCPP_INFO(this->get_logger(), "Inference paused");
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
                 is_beyondmimic_.store(!is_beyondmimic_.load());
                 bool is_beyondmimic = is_beyondmimic_.load();
@@ -170,10 +178,10 @@ void InferenceNode::subs_joy_callback(const std::shared_ptr<sensor_msgs::msg::Jo
                 std::fill(active_ctx_->output_buffer.begin(), active_ctx_->output_buffer.end(), 0.0f);
                 std::fill(act_.begin(), act_.end(), 0.0f);
                 std::fill(last_act_.begin(), last_act_.end(), 0.0f);
+                std::fill(joint_torques_.begin(), joint_torques_.end(), 0.0f);
                 is_first_frame_ = true;
                 motion_frame_ = 0;
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
-                is_running_.store(true);
                 RCLCPP_INFO(this->get_logger(), "Beyondmimic mode %s", is_beyondmimic ? "enabled" : "disabled");
             }
         }
