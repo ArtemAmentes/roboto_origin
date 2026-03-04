@@ -56,7 +56,7 @@ def decomposite(mesh, base_name, output_dir, threshold=0.01):
     assets_dir = os.path.join(output_dir, "assets")
     os.makedirs(assets_dir, exist_ok=True)
     mesh.process()
-    # 运行 CoACD 算法
+    # Запуск алгоритма CoACD
     coacd_mesh = coacd.Mesh(mesh.vertices, mesh.faces)
     
     parts = coacd.run_coacd(
@@ -180,52 +180,52 @@ if __name__ == "__main__":
 
     if args.export_hfield:
         terrain_mesh = terrain_generator.terrain_mesh
-        # 1. 设置采样网格参数
+        # 1. Настройка параметров сетки выборки
         bounds = terrain_mesh.bounds
         min_x, min_y, min_z = bounds[0]
         max_x, max_y, max_z = bounds[1]
 
-        # 设置分辨率
+        # Установка разрешения
         res = 0.03
 
         x_vals = np.arange(min_x, max_x, res)
         y_vals = np.arange(min_y, max_y, res)
         grid_x, grid_y = np.meshgrid(x_vals, y_vals)
 
-        # 2. 准备射线
+        # 2. Подготовка лучей
         z_high = max_z + 1.0
         ray_origins = np.column_stack([grid_x.flatten(), grid_y.flatten(), np.full(grid_x.size, z_high)])
         ray_directions = np.tile([0, 0, -1], (grid_x.size, 1))
 
-        # 3. 执行射线检测
+        # 3. Выполнение трассировки лучей
         locations, index_ray, index_tri = terrain_mesh.ray.intersects_location(
             ray_origins=ray_origins, 
             ray_directions=ray_directions
         )
 
-        # 4. 重建高度图
+        # 4. Восстановление карты высот
         hfield_flat = np.full(grid_x.size, min_z)
 
         if len(locations) > 0:
             hit_z = locations[:, 2]
-            # 如果同一条射线有多个交点，我们需要取最大值。
+            # Если один луч имеет несколько пересечений, берём максимум
             np.maximum.at(hfield_flat, index_ray, hit_z)
 
-        # 恢复为 2D 形状 (Rows=Y, Cols=X)
+        # Восстановление 2D-формы (Rows=Y, Cols=X)
         hfield_data = hfield_flat.reshape(grid_y.shape)
 
-        # 翻转 Y 轴以匹配图像坐标系
+        # Переворот оси Y для соответствия системе координат изображения
         hfield_data = np.flipud(hfield_data)
 
-        # 5. 归一化并保存为 PNG
+        # 5. Нормализация и сохранение в PNG
         h_min = np.min(hfield_data)
         h_max = np.max(hfield_data)
         h_range = h_max - h_min
 
         if h_range > 1e-6:
-            # 归一化到 [0, 1]
+            # Нормализация к [0, 1]
             hfield_norm = (hfield_data - h_min) / h_range
-            # 转换为 16-bit 灰度
+            # Преобразование в 16-битную градацию серого
             hfield_uint16 = (hfield_norm * 65535).astype(np.uint16)
         else:
             hfield_uint16 = np.zeros_like(hfield_data, dtype=np.uint16)
@@ -235,7 +235,7 @@ if __name__ == "__main__":
         Image.fromarray(hfield_uint16).save(file_path)
         print(f"Successfully exported hfield image to {output_dir}")
 
-        # 6. XML 输出
+        # 6. Вывод XML
         x_half = (max_x - min_x) / 2
         y_half = (max_y - min_y) / 2
 
@@ -247,6 +247,6 @@ if __name__ == "__main__":
         print(f'    <geom type="hfield" hfield="terrain" pos="{min_x + x_half:.4f} {min_y + y_half:.4f} 0"/>')
         print(f'</worldbody>')
         print("==========================\n")
-        # XML 里机器人 base_link pos_z 需要加上 abs(h_min) 的 offset
+        # В XML pos_z робота base_link должен включать смещение abs(h_min)
 
     simulation_app.close()

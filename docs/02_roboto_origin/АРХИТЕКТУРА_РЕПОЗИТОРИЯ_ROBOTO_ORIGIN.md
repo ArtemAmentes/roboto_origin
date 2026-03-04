@@ -1,6 +1,6 @@
-# Архитектура и структура репозитория Roboparty/roboto_origin
+# Архитектура русского репозитория roboto_origin
 
-Полная схема репозитория [https://github.com/Roboparty/roboto_origin](https://github.com/Roboparty/roboto_origin) для создания 100% русской версии.
+Полная схема русифицированного репозитория [ArtemAmentes/roboto_origin](https://github.com/ArtemAmentes/roboto_origin) — форка [Roboparty/roboto_origin](https://github.com/Roboparty/roboto_origin).
 
 ---
 
@@ -8,182 +8,154 @@
 
 ```mermaid
 flowchart TB
-    subgraph RobotoOrigin [roboto_origin - основной репо]
-        README[README.md]
-        READMECN[README_cn.md]
-        CONTRIB[CONTRIBUTING.md]
-        CONTRIBCN[CONTRIBUTING_CN.md]
-        COC[CODE_OF_CONDUCT.md]
-        COCCN[CODE_OF_CONDUCT_CN.md]
+    subgraph RobotoOrigin [roboto_origin - русский форк]
+        README[README.md - русский]
+        CONTRIB[CONTRIBUTING.md - русский]
+        COC[CODE_OF_CONDUCT.md - русский]
+        LICENSE[LICENSE - GPLv3]
         Assets[assets/]
         Modules[modules/]
+        Docs[docs/]
     end
 
     subgraph AssetsDetail [assets]
-        BOM[BOM.md - китайский]
-        BOMEN[BOM_EN.md - английский]
+        BOM[BOM.md - русский]
+        BOMEN[BOM_EN.md - английский справочный]
         InternalBOM[Internal Roboto D-BOM.xlsx]
-        Img1[1280X1280.JPEG/PNG]
-        Gif1[atom01-01.gif]
-        Gif2[atom01-02.gif]
-        QQ[qqqrcode.jpg]
-        WX[wxqrcode.png]
+        Robot1[1280X1280.JPEG - концепт робота]
+        Robot2[1280X1280.PNG - схема компонентов]
+        RobotViews[robot_front/side/back/perspective.jpeg]
     end
 
-    subgraph ModulesDetail [modules - git submodules]
-        HW[Atom01_hardware]
-        Deploy[atom01_deploy]
-        Train[atom01_train]
-        Desc[atom01_description]
-    end
-
-    subgraph External [Внешние зависимости]
-        Robolab[Luo1imasi/robolab]
-        RslRl[Luo1imasi/rsl_rl]
-        Imu[Luo1imasi/imu]
-        Inference[Luo1imasi/inference]
-        Motors[Luo1imasi/motors]
+    subgraph ModulesDetail [modules - снимки репозиториев]
+        HW[Atom01_hardware - русский]
+        Deploy[atom01_deploy - русский]
+        Train[atom01_train - русский]
+        Desc[atom01_description - русский]
     end
 
     RobotoOrigin --> AssetsDetail
     RobotoOrigin --> ModulesDetail
-    Deploy --> Imu
-    Deploy --> Inference
-    Deploy --> Motors
-    Train --> Robolab
-    Train --> RslRl
 ```
 
 ---
 
-## 2. Дерево файлов (полная структура)
+## 2. Дерево файлов (текущая структура)
 
 ```
-roboto_origin/                              # ~760 MB, 287 коммитов
+roboto_origin/
 │
-├── .gitattributes                          # LFS, атрибуты
-├── .gitignore                              # Исключения
-├── README.md                               # EN — основной
-├── README_cn.md                            # 中文 — КИТАЙСКИЙ, заменить на README_RU.md
-├── CONTRIBUTING.md                         # EN — перевести
-├── CONTRIBUTING_CN.md                      # 中文 — заменить на CONTRIBUTING_RU.md
-├── CODE_OF_CONDUCT.md                     # EN — перевести
-├── CODE_OF_CONDUCT_CN.md                   # 中文 — заменить на CODE_OF_CONDUCT_RU.md
+├── .gitattributes
+├── .gitignore
+├── LICENSE                               # GPLv3
+├── README.md                             # Русский
+├── CONTRIBUTING.md                       # Русский
+├── CODE_OF_CONDUCT.md                    # Русский
 │
 ├── assets/
-│   ├── 1280X1280.JPEG                     # Фото робота
-│   ├── 1280X1280.PNG                      # Схема
-│   ├── atom01-01.gif                      # Демо 1
-│   ├── atom01-02.gif                      # Демо 2
-│   ├── BOM.md                             # КИТАЙСКИЙ BOM → BOM_RU.md
-│   ├── BOM_EN.md                          # Англ. BOM → перевести в BOM_RU.md
-│   ├── Internal Roboto D-BOM.xlsx         # Excel BOM (китайские колонки?)
-│   ├── qqqrcode.jpg                       # QR QQ (китайский мессенджер)
-│   └── wxqrcode.png                       # QR WeChat
+│   ├── 1280X1280.JPEG                   # Концепт робота amentes
+│   ├── 1280X1280.PNG                    # Схема компонентов
+│   ├── robot_front.jpeg                 # Вид спереди
+│   ├── robot_side.jpeg                  # Вид сбоку
+│   ├── robot_back.jpeg                  # Вид сзади
+│   ├── robot_perspective.jpeg           # Перспектива
+│   ├── BOM.md                           # Русский BOM
+│   ├── BOM_EN.md                        # Английский (справочный)
+│   └── Internal Roboto D-BOM.xlsx       # Excel BOM
 │
-└── modules/                                # Submodules → отдельные репо
-    ├── Atom01_hardware/                    # https://github.com/Roboparty/Atom01_hardware
-    ├── atom01_deploy/                      # https://github.com/Roboparty/atom01_deploy
-    ├── atom01_train/                       # https://github.com/Roboparty/atom01_train
-    └── atom01_description/                  # https://github.com/Roboparty/atom01_description
+├── docs/
+│   ├── 01_обзор_проекта/
+│   └── 02_roboto_origin/
+│
+├── presentation/                         # Концепты робота amentes
+│
+└── modules/
+    ├── Atom01_hardware/                  # README на русском
+    ├── atom01_deploy/                    # README + скрипты на русском
+    ├── atom01_train/                     # README + комментарии на русском
+    └── atom01_description/               # README на русском
 ```
 
 ---
 
-## 3. Детальная структура sub-репозиториев
+## 3. Статус русификации
 
-### 3.1. Atom01_hardware
+| Элемент | Статус |
+|---------|--------|
+| README.md | ✅ Русский |
+| CONTRIBUTING.md | ✅ Русский |
+| CODE_OF_CONDUCT.md | ✅ Русский |
+| LICENSE | ✅ GPLv3 |
+| assets/BOM.md | ✅ Русский |
+| modules/*/README.md | ✅ Русский |
+| Python-комментарии | ✅ Русский |
+| Китайские файлы (*_CN.md) | ❌ Удалены |
+| QR-коды (WeChat, QQ) | ❌ Удалены |
+| GIF-демо | ❌ Удалены |
+| Картинки | ✅ Заменены на концепты amentes |
+
+---
+
+## 4. Структура sub-модулей
+
+### 4.1. Atom01_hardware
 
 ```
 Atom01_hardware/
-├── README.md                               # EN → README_RU.md
-├── README_cn.md                            # 中文 — заменить
-├── atom_id.png                             # Иллюстрация
-├── atom01_mechnaic/                        # Механика, CAD (китайские имена?)
-│   └── ...
-└── atom01_pcb/                             # Печатные платы
-    ├── Roboto_Power/                       # Схема питания
-    └── Roboto_Usb2Can/                     # USB-CAN преобразователь
+├── README.md                             # Русский
+├── atom_id.png
+├── atom01_mechnaic/                      # Механика, CAD
+│   └── README.md                         # Русский
+└── atom01_pcb/
+    ├── Roboto_Power/README.md            # Русский
+    └── Roboto_Usb2Can/README.md          # Русский
 ```
 
-### 3.2. atom01_deploy (ROS2, драйверы)
+### 4.2. atom01_deploy (ROS2, драйверы)
 
 ```
 atom01_deploy/
-├── README.md                               # EN, 10 KB → README_RU.md
-├── README_CN.md                            # 中文, 9 KB
-├── .gitmodules                             # Submodules: imu, inference, motors
-├── assets/
-├── scripts/                                # Скрипты (возможно китайские комментарии)
-├── src/
-│   ├── imu/                                # Submodule: Luo1imasi/imu
-│   ├── inference/                          # Submodule: Luo1imasi/inference
-│   └── motors/                             # Submodule: Luo1imasi/motors
-└── tools/
+├── README.md                             # Русский
+├── scripts/
+│   ├── motors_py_example.py              # Комментарии на русском
+│   ├── imu_py_example.py                 # Комментарии на русском
+│   ├── set_zero.py                       # Комментарии на русском
+│   └── motion_player.py                  # Комментарии на русском
+└── src/
+    ├── imu/README.md                     # Русский
+    ├── inference/
+    └── motors/
 ```
 
-### 3.3. atom01_train (RL, Isaac Lab)
+### 4.3. atom01_train (RL, Isaac Lab)
 
 ```
 atom01_train/
-├── README.md                               # EN → README_RU.md
-├── README_CN.md                            # 中文
-├── .gitmodules                             # robolab, rsl_rl
-├── robolab/                                # Submodule: Luo1imasi/robolab (Isaac Lab)
-└── rsl_rl/                                 # Submodule: Luo1imasi/rsl_rl
+├── README.md                             # Русский
+├── robolab/
+│   └── scripts/
+│       ├── rsl_rl/*.py                   # Комментарии на русском
+│       ├── mujoco/*.py                   # Комментарии на русском
+│       └── tools/*.py                    # Комментарии на русском
+└── rsl_rl/
+    └── rsl_rl/networks/attn_encoder.py   # Комментарии на русском
 ```
 
-### 3.4. atom01_description (URDF, MuJoCo)
+### 4.4. atom01_description (URDF, MuJoCo)
 
 ```
 atom01_description/
-├── README.md                               # Краткий
+├── README.md                             # Русский
 ├── atom01_urdf.png
-├── meshes/                                 # 3D-меши
-├── mjcf/                                   # MuJoCo-формат
-├── terrain_assets/                         # Ассеты местности
-└── urdf/                                   # URDF-модели
+├── meshes/
+├── mjcf/
+├── terrain_assets/
+└── urdf/
 ```
 
 ---
 
-## 4. Карта контента для перевода
-
-| Расположение | Файлы с китайским/англ. | Действие |
-|--------------|-------------------------|----------|
-| **roboto_origin (корень)** | README_cn, CONTRIBUTING_CN, CODE_OF_CONDUCT_CN | Заменить на *_RU.md |
-| **roboto_origin** | README, CONTRIBUTING, CODE_OF_CONDUCT | Добавить *_RU.md (перевод) |
-| **assets/** | BOM.md (кит.), BOM_EN.md | Создать BOM_RU.md |
-| **assets/** | Internal Roboto D-BOM.xlsx | Перевести заголовки колонок |
-| **Atom01_hardware** | README, README_cn | README_RU.md |
-| **atom01_deploy** | README, README_CN | README_RU.md |
-| **atom01_train** | README, README_CN | README_RU.md |
-| **atom01_description** | README | README_RU.md |
-| **Код (Python, C++)** | docstrings, комментарии | Перевод в docstrings/комментариях |
-| **Luo1imasi/* (submodules)** | imu, inference, motors, robolab, rsl_rl | Форк + перевод или оставить EN |
-
----
-
-## 5. Внешние зависимости (Luo1imasi)
-
-Модули atom01_deploy и atom01_train используют submodules из аккаунта **Luo1imasi**:
-
-| Submodule | Репозиторий | Язык кода |
-|-----------|-------------|-----------|
-| imu | github.com/Luo1imasi/imu | Вероятно китайский |
-| inference | github.com/Luo1imasi/inference | Вероятно китайский |
-| motors | github.com/Luo1imasi/motors | Вероятно китайский |
-| robolab | github.com/Luo1imasi/robolab | Isaac Lab |
-| rsl_rl | github.com/Luo1imasi/rsl_rl | RSL-RL |
-
-**Варианты для полной русификации:**
-1. **Форк** Luo1imasi/* под свой аккаунт, перевод комментариев
-2. **Обёртка** — оставить submodules как есть, перевести только README и docs в основном проекте
-3. **Копия** — скопировать код в свой репо (с соблюдением лицензий), перевести
-
----
-
-## 6. Поток данных и взаимодействие модулей
+## 5. Поток данных и взаимодействие модулей
 
 ```mermaid
 flowchart LR
@@ -225,80 +197,10 @@ flowchart LR
 
 ---
 
-## 7. Объём работ для 100% русской версии
+## 6. Связанные разделы
 
-| Категория | Количество | Оценка труда |
-|-----------|------------|--------------|
-| MD-файлы (документация) | ~15 файлов | 2–3 дня |
-| BOM (таблицы) | BOM.md, BOM_EN.md, xlsx | 1 день |
-| Код (docstrings) | atom01_deploy, atom01_train | 3–5 дней |
-| Код (комментарии) | Python, C++, YAML | 2–4 дня |
-| Submodules Luo1imasi | 5 репо | 5–10 дней (если полный форк) |
-| Имена файлов/папок | atom01_mechnaic (опечатка?) | Не менять |
-| Know-How (roboparty.com) | Внешний сайт | Отдельный проект |
-
-**Итого:** 2–4 недели (без Luo1imasi), 4–8 недель (с полным переводом submodules).
-
----
-
-## 8. Стратегия «100% копия на русском»
-
-### Вариант A: Монолитный форк
-
-1. Клонировать roboto_origin с submodules
-2. Создать свои форки Atom01_hardware, atom01_deploy, atom01_train, atom01_description
-3. В каждом форке: добавить README_RU.md, перевести весь текст
-4. Заменить submodule URLs на свои форки
-5. В коде: перевести docstrings и комментарии (имена переменных — EN)
-
-### Вариант B: Документация + обёртка
-
-1. Один репозиторий с переведённой документацией (README_RU, CONTRIBUTING_RU, BOM_RU)
-2. Submodules остаются на Roboparty/Luo1imasi
-3. Добавить docs/ru/ с полными переводами
-4. Код не трогать
-
-### Вариант C: Полная копия (без submodules)
-
-1. git clone --recursive
-2. Удалить .git из submodules, скопировать всё в один репо
-3. Перевести весь контент
-4. Потеря связи с upstream (обновления вручную)
-
----
-
-## 9. Список URL для скачивания
-
-### Основной репо
-- Archive: `https://github.com/Roboparty/roboto_origin/archive/refs/heads/main.zip`
-- Или: `git clone --recurse-submodules https://github.com/Roboparty/roboto_origin.git`
-
-### Submodules
-- https://github.com/Roboparty/Atom01_hardware
-- https://github.com/Roboparty/atom01_deploy
-- https://github.com/Roboparty/atom01_train
-- https://github.com/Roboparty/atom01_description
-
-### Внешние (Luo1imasi)
-- https://github.com/Luo1imasi/imu
-- https://github.com/Luo1imasi/inference
-- https://github.com/Luo1imasi/motors
-- https://github.com/Luo1imasi/robolab
-- https://github.com/Luo1imasi/rsl_rl
-
-### Know-How документация
-- https://roboparty.com/roboto_origin/doc
-
----
-
-## 10. Рекомендуемый порядок перевода
-
-1. **roboto_origin (корень):** README_RU, CONTRIBUTING_RU, CODE_OF_CONDUCT_RU  
-2. **assets:** BOM_RU.md  
-3. **Atom01_hardware:** README_RU  
-4. **atom01_deploy:** README_RU  
-5. **atom01_train:** README_RU  
-6. **atom01_description:** README_RU  
-7. **Код:** docstrings в atom01_deploy, atom01_train  
-8. **Luo1imasi:** по необходимости (форк или оставить)  
-9. **Know-How:** отдельный документ docs/know-how_RU/
+| Документ | Описание |
+|----------|----------|
+| [README модулей](README_модулей_RU.md) | Описание всех модулей Atom01 |
+| [Сборка робота](сборка_робота.md) | Quick Start, BOM, альтернативы для РФ |
+| [Структура репозитория](структура_открытого_репозитория.md) | Целевая структура |

@@ -83,22 +83,22 @@ def run_mujoco(policy, cfg, headless=False):
     
     os.environ['__GLX_VENDOR_LIBRARY_NAME'] = 'nvidia'
     os.environ['MUJOCO_GL'] = 'glfw'
-    # 根据 headless 参数选择渲染模式
+    # Выбор режима рендеринга в зависимости от параметра headless
     if headless:
         renderer = mujoco.Renderer(model, width=1920, height=1080)
-        # 设置视频写入器
+        # Настройка записи видео
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        # 创建并配置相机
+        # Создание и настройка камеры
         cam = mujoco.MjvCamera()
-        cam.distance = 4.0      # 增加距离以获得更好的视角
-        cam.azimuth = 45.0     # 水平旋转角度
-        cam.elevation = -20.0   # 垂直俯仰角度
-        cam.lookat = [0, 0, 1]  # 观察点位置
+        cam.distance = 4.0      # Увеличение дистанции для лучшего обзора
+        cam.azimuth = 45.0     # Угол горизонтального вращения
+        cam.elevation = -20.0   # Угол вертикального наклона
+        cam.lookat = [0, 0, 1]  # Точка наблюдения
         out = cv2.VideoWriter('simulation.mp4', fourcc, 1.0/cfg.sim_config.dt/cfg.sim_config.decimation, (1920, 1080))
     else:
         mode = 'window'
         viewer = mujoco_viewer.MujocoViewer(model, data, mode=mode, width=1920, height=1080)
-        # 设置窗口模式下的相机参数
+        # Настройка параметров камеры в оконном режиме
         viewer.cam.distance = 4.0
         viewer.cam.azimuth = 45.0
         viewer.cam.elevation = -20.0
@@ -190,7 +190,7 @@ def run_mujoco(policy, cfg, headless=False):
 
             if headless:
                 renderer.update_scene(data, camera=cam)
-                img = renderer.render()  # 直接获取RGB图像
+                img = renderer.render()  # Получение RGB-изображения
                 out.write(img)
             else:
                 viewer.render()

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Инструмент калибровки нулевой точки моторов."""
 import os
 import sys
 import yaml
@@ -7,12 +8,14 @@ import time
 
 
 def load_config(config_path: str) -> dict:
+    """Загрузка конфигурации из YAML-файла."""
     with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
     return config
 
 
 def create_motors(config: dict) -> list:
+    """Создание объектов моторов по конфигурации."""
     motors = []
     motor_ids = config['motor_id']
     motor_interface_type = config['motor_interface_type']
@@ -54,36 +57,38 @@ def create_motors(config: dict) -> list:
 
 
 def set_damping_mode(motor):
+    """Установка режима демпфирования."""
     motor.set_motor_control_mode(motors_py.MotorControlMode.MIT)
     motor.motor_mit_cmd(0.0, 0.0, 0.0, 2.0, 0.0)
 
 
 def calibrate_motor(motor_info: dict):
+    """Калибровка одного мотора."""
     motor = motor_info['motor']
     motor_id = motor_info['motor_id']
     interface = motor_info['interface']
     
     print(f"\n{'='*50}")
-    print(f"正在标定电机 ID: {motor_id} (接口: {interface})")
+    print(f"Калибровка мотора ID: {motor_id} (интерфейс: {interface})")
     print(f"{'='*50}")
     
-    print("使能电机...")
+    print("Включение мотора...")
     motor.init_motor()
     time.sleep(0.3)
     
-    print("设置纯阻尼控制模式 (MIT: 0, 0, 0, 2, 0)...")
+    print("Установка режима демпфирования (MIT: 0, 0, 0, 2, 0)...")
     set_damping_mode(motor)
     time.sleep(0.1)
     
-    print("\n>>> 请手动将电机摆到零位 <<<")
-    print("提示: 电机现在处于阻尼模式，可以自由转动")
+    print("\n>>> Вручную установите мотор в нулевую позицию <<<")
+    print("Подсказка: мотор в режиме демпфирования, можно свободно вращать")
     
     try:
         while True:
             motor.motor_mit_cmd(0.0, 0.0, 0.0, 2.0, 0.0)
             
             pos = motor.get_motor_pos()
-            print(f"\r当前位置: {pos:+.6f} rad | 按 Enter 确认并标零...", end='', flush=True)
+            print(f"\rТекущая позиция: {pos:+.6f} рад | Нажмите Enter для подтверждения...", end='', flush=True)
             
             import select
             if select.select([sys.stdin], [], [], 0.05)[0]:
@@ -92,66 +97,67 @@ def calibrate_motor(motor_info: dict):
             
             time.sleep(0.02)
     except KeyboardInterrupt:
-        print("\n\n用户中断标定")
+        print("\n\nКалибровка прервана пользователем")
         motor.deinit_motor()
         raise
     
     motor.set_motor_zero()
-    print(f"\n\n电机 {motor_id} 已标零!")
+    print(f"\n\nМотор {motor_id} откалиброван!")
     
-    print("失能电机...")
+    print("Отключение мотора...")
     motor.deinit_motor()
     time.sleep(0.2)
 
 
 def main():
+    """Основная функция калибровки."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     config_path = os.path.join(script_dir, 'config', 'set_zero.yaml')
     
     print("="*60)
-    print("           电机零点标定工具")
+    print("        Инструмент калибровки нулевой точки моторов")
     print("="*60)
-    print(f"\n配置文件: {config_path}\n")
+    print(f"\nФайл конфигурации: {config_path}\n")
     
     try:
         config = load_config(config_path)
     except Exception as e:
-        print(f"加载配置文件失败: {e}")
+        print(f"Ошибка загрузки конфигурации: {e}")
         return 1
     
-    print("配置信息:")
-    print(f"  - 电机ID列表: {config['motor_id']}")
-    print(f"  - 电机类型: {config['motor_type']}")
-    print(f"  - 接口类型: {config['motor_interface_type']}")
-    print(f"  - 接口: {config['motor_interface']}")
-    print(f"  - 电机型号: {config['motor_model']}")
+    print("Информация о конфигурации:")
+    print(f"  - ID моторов: {config['motor_id']}")
+    print(f"  - Тип моторов: {config['motor_type']}")
+    print(f"  - Тип интерфейса: {config['motor_interface_type']}")
+    print(f"  - Интерфейсы: {config['motor_interface']}")
+    print(f"  - Модели моторов: {config['motor_model']}")
     print("\n" + "-"*60)
-    input("按 Enter 开始标定流程...")
+    input("Нажмите Enter для начала калибровки...")
     print("-"*60)
     
     try:
         motors = create_motors(config)
-        print(f"\n成功创建 {len(motors)} 个电机对象")
+        print(f"\nСоздано {len(motors)} объектов моторов")
     except Exception as e:
-        print(f"创建电机失败: {e}")
+        print(f"Ошибка создания моторов: {e}")
         return 1
     
     try:
         for motor_info in motors:
             calibrate_motor(motor_info)
-            print(f"电机 {motor_info['motor_id']} 标定完成!")
+            print(f"Мотор {motor_info['motor_id']} откалиброван!")
     except KeyboardInterrupt:
-        print("\n\n标定被用户中断")
+        print("\n\nКалибровка прервана пользователем")
         return 1
     except Exception as e:
-        print(f"\n标定过程出错: {e}")
+        print(f"\nОшибка калибровки: {e}")
         return 1
     
     print("\n" + "="*60)
-    print("         所有电机标零完成!")
+    print("        Калибровка всех моторов завершена!")
     print("="*60)
     
-    print("\n标定流程结束")
+    print("\nПроцесс калибровки завершён")
     return 0
 
 

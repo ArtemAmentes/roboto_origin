@@ -166,10 +166,10 @@ def run_mujoco(policy, cfg, headless=False,loop=False,motion_file=None):
         renderer = mujoco.Renderer(model, width=1920, height=1080)
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         cam = mujoco.MjvCamera()
-        cam.distance = 4.0      # 增加距离以获得更好的视角
-        cam.azimuth = 45.0     # 水平旋转角度
-        cam.elevation = -20.0   # 垂直俯仰角度
-        cam.lookat = [0, 0, 1]  # 观察点位置
+        cam.distance = 4.0      # Увеличение дистанции для лучшего обзора
+        cam.azimuth = 45.0     # Угол горизонтального вращения
+        cam.elevation = -20.0   # Угол вертикального наклона
+        cam.lookat = [0, 0, 1]  # Точка наблюдения
         out = cv2.VideoWriter('simulation.mp4', fourcc, 1.0/cfg.sim_config.dt/cfg.sim_config.decimation, (1920, 1080))
     else:
         mode = 'window'

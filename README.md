@@ -111,10 +111,20 @@ git pull
 
 ---
 
-## Участники
+## Благодарности
 
-Благодарим всех, кто вносит вклад в проект!
+Этот проект основан на открытых материалах [RoboParty](https://github.com/Roboparty/roboto_origin) — китайского сообщества разработчиков DIY-робототехники.
+
+Выражаем искреннюю благодарность нашим китайским друзьям за:
+- Полностью открытую аппаратную платформу Atom01
+- Исходный код обучения и развёртывания
+- CAD-модели, URDF-описания и документацию
+- Вдохновение для развития робототехники в России
 
 <a href="https://github.com/Roboparty/roboto_origin/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Roboparty/roboto_origin" alt="Участники"/>
+  <img src="https://contrib.rocks/image?repo=Roboparty/roboto_origin" alt="Оригинальные авторы RoboParty"/>
 </a>
+
+---
+
+**Русскоязычный форк поддерживается:** [ArtemAmentes](https://github.com/ArtemAmentes)

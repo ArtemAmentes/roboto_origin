@@ -209,7 +209,7 @@ def feet_air_time(
     # compute the reward
     first_contact = contact_sensor.compute_first_contact(env.step_dt)[:, sensor_cfg.body_ids]
     last_air_time = contact_sensor.data.last_air_time[:, sensor_cfg.body_ids]
-    # 只对超过 threshold 的空中时间给予正奖励（防止负值惩罚）
+    # Награда только за время в воздухе, превышающее threshold (предотвращает отрицательные штрафы)
     positive_air = torch.clamp(last_air_time - threshold, min=0.0)
     reward = torch.sum(positive_air * first_contact.float(), dim=1)
     # no reward for zero command
@@ -336,40 +336,40 @@ def sound_suppression_acc_per_foot(
     command_name: str = "base_velocity",
 ) -> torch.Tensor:
     """
-    每只脚单独计算：
-    脚接触地面时，z 方向加速度大 → 惩罚
+    Расчёт для каждой ноги отдельно:
+    При контакте ноги с землёй большое ускорение по z → штраф
     """
 
     asset = env.scene["robot"]
 
-    # 1️⃣ 取所有 body 的线加速度 (world)
+    # 1. Получение линейного ускорения всех тел (world)
     # shape: (Nenv, Nbody, 6)
     body_acc = asset.data.body_acc_w
 
-    # 2️⃣ 取“脚”的 z 方向线加速度
+    # 2. Извлечение z-компоненты ускорения ног
     # shape: (Nenv, Nfeet)
     foot_acc_z = body_acc[:, sensor_cfg.body_ids, 2]
 
-    # 3️⃣ 取脚的接触状态
+    # 3. Получение состояния контакта ног
     contact_sensor = env.scene.sensors[sensor_cfg.name]
     contact_force_z = contact_sensor.data.net_forces_w[:, sensor_cfg.body_ids, 2]
 
     in_contact = torch.abs(contact_force_z) > 1.0  # (Nenv, Nfeet)
 
-    # 4️⃣ 每只脚：加速度平方 × 接触状态
+    # 4. Для каждой ноги: квадрат ускорения × состояние контакта
     acc_penalty = (foot_acc_z ** 2) * in_contact.float()
 
-    # 防止数值爆炸（非常重要）
+    # Предотвращение численного взрыва (очень важно)
     acc_penalty = torch.clamp(acc_penalty, max=50.0)
 
-    # 5️⃣ 所有脚加起来
+    # 5. Суммирование по всем ногам
     penalty = acc_penalty.sum(dim=1)
     reward = penalty
 
-    # 仅当速度命令较小（小于 1.5）时才启用该奖励
+    # Награда применяется только при малой командной скорости (менее 1.5)
     cmd = env.command_manager.get_command(command_name)
     
-    # 使用 xy 分量的速度范数作为速度大小判断
+    # Использование нормы xy-компонент скорости для определения величины
     cmd_speed = torch.norm(cmd[:, :2], dim=1)
     reward = reward * (cmd_speed < 1.5).float()
 
@@ -420,66 +420,66 @@ def staged_navigation_reward(
     command_name: str = "pose_command",
     asset_cfg: SceneEntityCfg = SceneEntityCfg("robot"),
     sensor_cfg: SceneEntityCfg = SceneEntityCfg("ray_caster"),
-    heading_threshold: float = 0.78,  # 45°，朝向误差阈值
-    distance_threshold: float = 0.5,   #  距离目标的阈值
-    near_goal_threshold: float = 2.0,  # 接近目标的距离阈值
-    obstacle_threshold: float = 0.8,  # 前方障碍物的距离阈值
+    heading_threshold: float = 0.78,  # 45°, порог ошибки ориентации
+    distance_threshold: float = 0.5,   # порог расстояния до цели
+    near_goal_threshold: float = 2.0,  # порог приближения к цели
+    obstacle_threshold: float = 0.8,  # порог расстояния до препятствия
 ) -> torch.Tensor:
     asset: Articulation = env.scene[asset_cfg.name]
     ray_caster: RayCaster = env.scene[sensor_cfg.name]
     
     command = env.command_manager.get_command(command_name)
-    des_pos = command[:, :2] # 目标位置
-    des_heading = command[:, 2] # 目标朝向
-    distance = torch.norm(des_pos, dim=1) # 机器人到目标位置的距离
+    des_pos = command[:, :2] # целевая позиция
+    des_heading = command[:, 2] # целевая ориентация
+    distance = torch.norm(des_pos, dim=1) # расстояние до цели
     
-    vx = asset.data.root_lin_vel_b[:, 0] # 机器人在base frame下的前向速度
-    vy = asset.data.root_lin_vel_b[:, 1] # 机器人在base frame下的侧向速度
-    speed = torch.norm(asset.data.root_lin_vel_b[:, :2], dim=1) # 机器人在水平面的速度大小 
-    ang_speed = torch.abs(asset.data.root_ang_vel_b[:, 2]) # 机器人绕垂直轴的角速度
+    vx = asset.data.root_lin_vel_b[:, 0] # продольная скорость в base frame
+    vy = asset.data.root_lin_vel_b[:, 1] # боковая скорость в base frame
+    speed = torch.norm(asset.data.root_lin_vel_b[:, :2], dim=1) # модуль скорости в плоскости 
+    ang_speed = torch.abs(asset.data.root_ang_vel_b[:, 2]) # угловая скорость вокруг оси z
 
-    # 当前移动方向与期望朝向误差（规范化到 [-pi, pi]）
+    # Ошибка между направлением движения и целевой ориентацией (нормализовано к [-pi, pi])
     move_dir_angle = torch.atan2(vy, vx)
     raw_diff = move_dir_angle - des_heading
     diff_wrapped = torch.remainder(raw_diff + torch.pi, 2 * torch.pi) - torch.pi
     move_heading_error = diff_wrapped.abs()
     
-    # 雷达前方最近障碍物距离（已在外部被 clamp）
+    # Расстояние до ближайшего препятствия (clamp применён извне)
     origin = ray_caster.data.pos_w.unsqueeze(1)  # [num_envs, 1, 3]
     hits = ray_caster.data.ray_hits_w  # [num_envs, num_rays, 3]
     distances = torch.norm(hits - origin, dim=-1).clamp(min=0.2, max=5.0)  # [num_envs, num_rays]
     front_min_dist = torch.min(distances, dim=1).values  # [num_envs]
     
-    # 1) 朝向匹配奖励：误差越小奖励越高
+    # 1) Награда за совпадение ориентации: меньше ошибка → выше награда
     heading_reward = 1.0 / (1.0 + (move_heading_error / (heading_threshold + 1e-6))**2)
 
-    # 2) 沿期望朝向的速度（越朝向目标前进越好），只奖励正向分量
+    # 2) Скорость в направлении цели (только положительная компонента)
     proj_vel = vx * torch.cos(des_heading) + vy * torch.sin(des_heading)
-    progress_reward = torch.tanh(2.0 * proj_vel.clamp(min=0.0, max=1.0))  # 正向速度越大奖励越高，最大值接近1.0
+    progress_reward = torch.tanh(2.0 * proj_vel.clamp(min=0.0, max=1.0))  # больше скорость → выше награда
 
-    # 3) 障碍物清除奖励：鼓励与障碍物保持距离
-    # 当 front_min_dist < obstacle_threshold 时，距离越大奖励越高（在 safe_min..obstacle_threshold 区间归一化到 0..1）
+    # 3) Награда за избегание препятствий: поощряет держать дистанцию
+    # Награда нормализована к 0..1 в диапазоне safe_min..obstacle_threshold
     safe_min = 0.5
     denom = max(obstacle_threshold - safe_min, 1e-6)
     obs_clearance = torch.clamp(front_min_dist - safe_min, min=0.0, max=obstacle_threshold - safe_min) / denom  # 0..1 when front_min_dist within [safe_min, obstacle_threshold]
-    # 保持变量名兼容下游使用
+    # Совместимость имён переменных
     obs_approach_raw = obs_clearance
     
-    # 对于 front_min_dist < safe_min 给出负向惩罚（碰撞/过近）
+    # Штраф при front_min_dist < safe_min (столкновение/слишком близко)
     collision_penalty = torch.clamp(safe_min - front_min_dist, min=0.0) / safe_min  # 0..1
 
-    # 距离目标的奖励：距离越小越好，使用 near_goal_threshold 归一化尺度
+    # Награда за расстояние до цели: ближе → лучше
     dist_reward = 1.0 / (1.0 + (distance / (near_goal_threshold + 1e-6))**2)
 
-    # 分阶段加权：远离目标优先前进与保持清除，接近目标优先朝向精确并靠近目标
+    # Поэтапное взвешивание: далеко — вперёд, близко — точная ориентация
     is_far = distance > near_goal_threshold
     is_near = torch.logical_and(distance <= near_goal_threshold, distance > distance_threshold)
     is_at_goal = distance <= distance_threshold
 
-    # 权重已调整并规范化（每阶段权重之和约为1）：
-    # - far: 优先前进/清除障碍
-    # - near: 优先朝向准确
-    # - goal: 优先朝向与靠近目标（含站姿保持项）
+    # Веса нормализованы (сумма ~1 для каждой фазы):
+    # - far: приоритет движению/избеганию препятствий
+    # - near: приоритет точной ориентации
+    # - goal: ориентация + приближение (+ удержание позы)
     far_reward = 0.50 * progress_reward + 0.15 * heading_reward + 0.25 * obs_approach_raw + 0.10 * dist_reward
     near_reward = 0.20 * progress_reward + 0.45 * heading_reward + 0.15 * obs_approach_raw + 0.20 * dist_reward
     goal_reward = 0.05 * progress_reward + 0.60 * heading_reward + 0.15 * torch.exp(-torch.sum(torch.abs(asset.data.joint_pos - asset.data.default_joint_pos), dim=1)) + 0.20 * dist_reward
@@ -489,11 +489,11 @@ def staged_navigation_reward(
     reward = torch.where(is_near, near_reward, reward)
     reward = torch.where(is_at_goal, goal_reward, reward)
 
-    # 减去碰撞/过近惩罚及不良行为惩罚（横向速度、角速度）
+    # Вычитание штрафов за столкновение и нежелательное поведение
     lateral_speed = torch.abs(vy)
     reward = reward - collision_penalty #- 0.08 * lateral_speed - 0.05 * ang_speed
 
-    # 限幅防止数值爆炸
+    # Ограничение для предотвращения численного взрыва
     reward = torch.clamp(reward, min=-1.0, max=2.0)
 
     return reward

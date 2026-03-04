@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
+"""Пример работы с IMU через последовательный порт."""
 import imu_py
 import time
 
 def example_serial_imu():
-    """使用串口连接的IMU示例"""
-    print("=== 串口IMU示例 ===")
+    """Пример использования IMU, подключённого через serial."""
+    print("=== Пример работы с IMU (serial) ===")
     try:
         imu = imu_py.IMUDriver.create_imu(
             imu_id=8,
@@ -14,23 +15,23 @@ def example_serial_imu():
             baudrate=921600
         )
     except Exception as e:
-        print(f"创建IMU失败: {e}")
+        print(f"Ошибка создания IMU: {e}")
         return
     
-    print(f"IMU ID: {imu.get_imu_id()}")
+    print(f"ID IMU: {imu.get_imu_id()}")
     
     for i in range(1000):
         quat = imu.get_quat()
-        print(f"四元数: w={quat[0]:.4f}, x={quat[1]:.4f}, y={quat[2]:.4f}, z={quat[3]:.4f}")
+        print(f"Кватернион: w={quat[0]:.4f}, x={quat[1]:.4f}, y={quat[2]:.4f}, z={quat[3]:.4f}")
         
         ang_vel = imu.get_ang_vel()
-        print(f"角速度: x={ang_vel[0]:.4f}, y={ang_vel[1]:.4f}, z={ang_vel[2]:.4f} rad/s")
+        print(f"Угловая скорость: x={ang_vel[0]:.4f}, y={ang_vel[1]:.4f}, z={ang_vel[2]:.4f} рад/с")
         
         lin_acc = imu.get_lin_acc()
-        print(f"线加速度: x={lin_acc[0]:.4f}, y={lin_acc[1]:.4f}, z={lin_acc[2]:.4f} m/s^2")
+        print(f"Линейное ускорение: x={lin_acc[0]:.4f}, y={lin_acc[1]:.4f}, z={lin_acc[2]:.4f} м/с²")
         
         temp = imu.get_temperature()
-        print(f"温度: {temp:.2f}°C")
+        print(f"Температура: {temp:.2f}°C")
         
         print("-" * 50)
         time.sleep(0.01)

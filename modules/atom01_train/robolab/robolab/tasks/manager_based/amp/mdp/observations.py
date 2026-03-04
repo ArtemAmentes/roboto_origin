@@ -112,7 +112,7 @@ def ref_root_projected_gravity(
         return projected_gravity
     
 def ray_caster(env: ManagerBasedEnv, sensor_cfg: SceneEntityCfg) -> torch.Tensor:
-    """获取激光雷达（RayCaster）传感器的距离数据"""
+    """Получение данных о расстоянии от лидара (RayCaster)"""
     sensor: RayCaster = env.scene.sensors[sensor_cfg.name]
     origin = sensor.data.pos_w.unsqueeze(1)  # [num_envs, 1, 3]
     hits = sensor.data.ray_hits_w  # [num_envs, num_rays, 3]
