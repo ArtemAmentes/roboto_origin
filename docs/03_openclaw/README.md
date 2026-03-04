@@ -46,5 +46,5 @@
 
 ## Связанные разделы
 
-- [roboto_origin](../02_roboto_origin/README.md) — платформа исполнения
-- [Интеграция OpenClaw + roboto_origin](../02_roboto_origin/интеграция_openclaw.md) — архитектура связки
+- [робот](../02_робот/README.md) — платформа исполнения
+- [Интеграция OpenClaw + робот](../02_робот/интеграция_openclaw.md) — архитектура связки

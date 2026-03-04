@@ -1,4 +1,4 @@
-# Модули roboto_origin — краткое описание на русском
+# Модули робот — краткое описание на русском
 
 Русскоязычное описание модулей проекта Atom01. Оригиналы: [Atom01_hardware](https://github.com/Roboparty/Atom01_hardware), [atom01_deploy](https://github.com/Roboparty/atom01_deploy), [atom01_train](https://github.com/Roboparty/atom01_train), [atom01_description](https://github.com/Roboparty/atom01_description).
 
@@ -92,5 +92,5 @@ URDF-модели, MJCF для MuJoCo, меши, ассеты местности
 ## См. также
 
 - [Сборка робота](сборка_робота.md)
-- [Архитектура репозитория](АРХИТЕКТУРА_РЕПОЗИТОРИЯ_ROBOTO_ORIGIN.md)
+- [Архитектура репозитория](АРХИТЕКТУРА_РЕПОЗИТОРИЯ_РОБОТ.md)
 - [BOM на русском](../../assets/BOM_RU.md)

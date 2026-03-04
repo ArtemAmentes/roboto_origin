@@ -9,7 +9,7 @@
 | № | Раздел | Содержание |
 |---|--------|------------|
 | 01 | [Обзор проекта](01_обзор_проекта/) | Концепция, дорожная карта, work packages, рынок, поставщики |
-| 02 | [roboto_origin](02_roboto_origin/) | Архитектура, модули, сборка робота |
+| 02 | [робот](02_робот/) | Архитектура, модули, сборка робота |
 | 03 | [OpenClaw](03_openclaw/) | AI-агенты, zero-code robotics, ClawBody |
 | 04 | [Презентация](04_презентация_москва/) | Материалы для госзаявки |
 | 05 | [Команда](05_команда/) | Состав, опыт, контакты |
@@ -24,7 +24,7 @@
 | Дорожная карта | [01_обзор_проекта/дорожная_карта.md](01_обзор_проекта/дорожная_карта.md) |
 | Рынок гуманоидов | [01_обзор_проекта/исследование_рынка_гуманоидов.md](01_обзор_проекта/исследование_рынка_гуманоидов.md) |
 | Поставщики РФ | [01_обзор_проекта/компонентная_база_и_поставки.md](01_обзор_проекта/компонентная_база_и_поставки.md) |
-| Архитектура roboto_origin | [02_roboto_origin/АРХИТЕКТУРА_РЕПОЗИТОРИЯ_ROBOTO_ORIGIN.md](02_roboto_origin/АРХИТЕКТУРА_РЕПОЗИТОРИЯ_ROBOTO_ORIGIN.md) |
+| Архитектура робот | [02_робот/АРХИТЕКТУРА_РЕПОЗИТОРИЯ_РОБОТ.md](02_робот/АРХИТЕКТУРА_РЕПОЗИТОРИЯ_РОБОТ.md) |
 | Интеграция OpenClaw | [03_openclaw/стратегия_интеграции_openclaw.md](03_openclaw/стратегия_интеграции_openclaw.md) |
 
 ---
@@ -43,8 +43,8 @@ python create_presentation.py
 
 ## Репозиторий
 
-- **GitHub:** [ArtemAmentes/roboto_origin](https://github.com/ArtemAmentes/roboto_origin)
-- **Upstream:** [Roboparty/roboto_origin](https://github.com/Roboparty/roboto_origin)
+- **GitHub:** [ArtemAmentes/робот](https://github.com/ArtemAmentes/roboto_origin)
+- **Upstream:** [Roboparty/робот](https://github.com/Roboparty/roboto_origin)
 
 ---
 

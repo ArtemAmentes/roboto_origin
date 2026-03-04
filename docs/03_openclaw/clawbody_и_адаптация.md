@@ -13,9 +13,9 @@
 
 ---
 
-## Адаптация под roboto_origin / atom01
+## Адаптация под робот / atom01
 
-roboto_origin использует:
+робот использует:
 - ROS2
 - atom01_deploy — драйверы, middleware, IMU, моторы
 - Isaac Lab для симуляции

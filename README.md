@@ -1,4 +1,4 @@
-# ROBOTO_ORIGIN — Открытый Российский проект создания робота-андроида
+# РОБОТ — Открытый Российский проект создания робота-андроида
 
 [![Лицензия: GPL v3](https://img.shields.io/badge/Лицензия-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![ROS2](https://img.shields.io/badge/ROS2-Humble-silver)](https://docs.ros.org/en/humble/index.html) [![Isaac Sim](https://img.shields.io/badge/IsaacSim-4.5.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) [![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.1.1-silver)](https://isaac-sim.github.io/IsaacLab) [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html) [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/w/C++17) [![Платформа](https://img.shields.io/badge/платформа-linux--64-orange.svg)](https://ubuntu.com/)
 
@@ -8,7 +8,7 @@
 
 ## О проекте
 
-**ROBOTO_ORIGIN** — открытый российский проект по созданию полностью опенсорсного робота-андроида. Проект направлен на развитие отечественной робототехники с открытым исходным кодом, доступной документацией и прозрачным процессом разработки.
+**РОБОТ** — открытый российский проект по созданию полностью опенсорсного робота-андроида. Проект направлен на развитие отечественной робототехники с открытым исходным кодом, доступной документацией и прозрачным процессом разработки.
 
 Проект основан на открытых материалах китайского сообщества [RoboParty](https://github.com/Roboparty/roboto_origin), которые мы адаптируем и развиваем для российских условий.
 
@@ -72,7 +72,7 @@
 |--------|----------|
 | **[docs/](docs/)** | Полная документация проекта |
 | **[Обзор проекта](docs/01_обзор_проекта/)** | Концепция, дорожная карта, рынок, поставщики |
-| **[roboto_origin](docs/02_roboto_origin/)** | Архитектура, модули, сборка |
+| **[робот](docs/02_робот/)** | Архитектура, модули, сборка |
 | **[Презентация](presentation/)** | Концепты и визуальные материалы |
 
 ---

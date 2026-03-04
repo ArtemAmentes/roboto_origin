@@ -35,5 +35,5 @@
 
 ## Связанные разделы
 
-- [roboto_origin](../02_roboto_origin/README.md) — форк открытой платформы RoboParty
+- [робот](../02_робот/README.md) — форк открытой платформы RoboParty
 - [OpenClaw](../03_openclaw/README.md) — AI-агент для управления роботами
