@@ -24,7 +24,7 @@
 
 ## Быстрые ссылки
 
-- **Презентация:** [Презентация/create_presentation.py](../Презентация/create_presentation.py) — генерация .pptx
+- **Презентация:** [presentation/create_presentation.py](../presentation/create_presentation.py) — генерация .pptx
 - **План работ по робототехнике:** [01_обзор_проекта/структура_работ.md](01_обзор_проекта/структура_работ.md)
 - **roboto_origin + OpenClaw:** [02_roboto_origin/интеграция_openclaw.md](02_roboto_origin/интеграция_openclaw.md)
 - **Структура открытого репо:** [02_roboto_origin/структура_открытого_репозитория.md](02_roboto_origin/структура_открытого_репозитория.md)
