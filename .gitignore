@@ -2,3 +2,6 @@
 atom01_mechnaic/
 atom01_pcb/
 .scripts
+
+# Сгенерированная презентация
+presentation/*.pptx
