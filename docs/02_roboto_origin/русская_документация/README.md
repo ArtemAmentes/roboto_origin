@@ -8,13 +8,14 @@
 - `CONTRIBUTING_RU.md` — правила контрибьютинга
 - `CODE_OF_CONDUCT_RU.md` — кодекс поведения
 - [сборка_робота.md](../сборка_робота.md) — краткое руководство по сборке Atom01
+- `assets/BOM_RU.md` — спецификация компонентов на русском
+- README_RU в sub-репозиториях: Atom01_hardware, atom01_deploy, atom01_train, atom01_description
 
 ## Планируемые
 
 - `know-how/` — перевод Humanoid Robot Know-How Documentation с roboparty.com
-- README_RU в sub-репозиториях (Atom01_hardware, atom01_deploy, atom01_train, atom01_description)
-- BOM_RU.md — перевод спецификации компонентов (в assets/)
+- Docstrings и комментарии в коде на русском (опционально)
 
 ## Статус
 
-Основная документация переведена. Sub-репозитории и Know-How — в плане.
+Основная документация и README модулей переведены. Know-How — в плане.
