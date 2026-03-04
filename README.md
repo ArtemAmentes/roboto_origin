@@ -45,7 +45,7 @@ If you wish to contribute to the project, please select the appropriate sub-repo
 
 **For detailed contribution guidelines:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
-**[BOM table](./assets/BOM_EN.md)**
+**[BOM table](./assets/BOM_EN.md)** | **[BOM (русский)](./assets/BOM_RU.md)**
 
 ---
 

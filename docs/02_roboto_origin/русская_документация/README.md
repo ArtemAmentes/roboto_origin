@@ -13,7 +13,7 @@
 
 - `know-how/` — перевод Humanoid Robot Know-How Documentation с roboparty.com
 - README_RU в sub-репозиториях (Atom01_hardware, atom01_deploy, atom01_train, atom01_description)
-- BOM_RU.md — перевод спецификации компонентов
+- BOM_RU.md — перевод спецификации компонентов (в assets/)
 
 ## Статус
 
