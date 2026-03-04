@@ -1,79 +1,83 @@
-# Roboto_Usb2Can_V1.0 - USB to 4-Channel CAN Communication Module
+# Roboto_Usb2Can_V1.0 — USB → 4-канальный CAN модуль связи
 
-[English](./README.md) | **[🇨🇳 中文](./README_cn.md)**
+![Производитель](https://img.shields.io/badge/Производитель-RoboParty-blue)
+![Аппаратная_версия](https://img.shields.io/badge/Версия-V1.0-green)
+![ОС](https://img.shields.io/badge/ОС-Только_Linux-orange)
 
-![Manufacturer](https://img.shields.io/badge/Manufacturer-RoboParty-blue)
-![Hardware](https://img.shields.io/badge/Hardware-V1.0-green)
-![OS](https://img.shields.io/badge/OS-Linux_Only-orange)
+![Рендер](00_Docs/Images/render.png)
 
-![Render](00_Docs/Images/render.png)
+## 📖 Обзор
 
-## 📖 Overview
+**Roboto_Usb2Can_V1.0** — высокоинтегрированный модуль преобразования связи от **RoboParty**.
 
-**Roboto_Usb2Can_V1.0** is a highly integrated communication conversion device developed by **RoboParty**.
+Разработан для систем управления роботами. Преобразует USB-сигналы от хост-компьютера (Orange Pi 5 Plus или другие Linux-устройства) в **4 независимых CAN-шины** для управления сервоприводами.
 
-Designed primarily for robot control systems, this module converts USB signals from a host computer (such as an Orange Pi 5 Plus or other Linux devices) into **4 independent CAN bus signals**, enabling efficient control of actuators like servo motors.
+> ⚠️ **Примечание:** Устройство поддерживается только в **Linux**.
 
-> ⚠️ **Note:** This device currently only supports recognition and usage on **Linux systems**.
+## 📂 Структура репозитория
 
-## 📂 Repository Structure
+| Папка | Содержимое |
+|-------|------------|
+| `00_Docs/` | Документация и изображения |
+| `01_Gerber/` | Gerber для производства PCB |
+| `02_Assembly/` | BOM и координаты компонентов |
+| `03_Firmware/` | Прошивка |
 
-This repository contains all files required to manufacture and use this module:
+## 🔌 Интерфейсы
 
-- **PCB Manufacturing Files (Gerber):** `01_Gerber/`
-- **BOM & Coordinate Files:** `02_Assembly/`
-- **Firmware Files:** `03_Firmware/`
-- **Detailed Documentation:** `00_Docs/`
+### Расположение
 
-## 🔌 Interfaces
+![Интерфейсы](00_Docs/Images/interface_top.png)
 
-### 1. Hardware Interface Layout
-![Interfaces](00_Docs/Images/interface_top.png)
+| № | Название | Тип | Описание |
+|:--|:---------|:----|:---------|
+| ①/④ | **Монтажные отверстия** | Механика | Стандартные крепёжные отверстия |
+| ② | **LED индикаторы** | Светодиод | Статус 4 каналов |
+| ③ | **USB-C** | Данные/Питание | Подключение к хосту (Linux), вход 5V |
+| ④ | **CAN-интерфейсы** | GH1.25 | 4 канала CAN (4L, 4H, 3L, 3H...) |
 
-| No. | Name | Type | Description |
-| :--- | :--- | :--- | :--- |
-| **①/④** | **Mounting Holes** | Mechanical | Standard mounting holes |
-| **②** | **Flashing LEDs** | LED | Status indicators for the 4 backend channels |
-| **③** | **USB-C** | Data/Power | Connects to Host (Linux), 5V Input |
-| **④** | **CAN Interfaces** | GH1.25 | 4-channel CAN bus output (4L, 4H, 3L, 3H...) |
+### Рекомендуемая топология подключения
 
-### 2. Recommended Connection Topology
-For easier management, we recommend connecting the robot joints in the following order:
+| CAN | Назначение |
+|-----|------------|
+| CAN 1 | Левая нога (включая пояс) |
+| CAN 2 | Правая нога |
+| CAN 3 | Левая рука |
+| CAN 4 | Правая рука |
 
-- **CAN 1:** Left Leg (including Waist)
-- **CAN 2:** Right Leg
-- **CAN 3:** Left Arm
-- **CAN 4:** Right Arm
+## 🛠️ Прошивка
 
-## 🛠️ Firmware Flashing Guide
+На задней стороне устройства — 4 интерфейса SWD. Используйте **pogo-пины 1.25 мм** с ST-Link или аналогом.
 
-There are 4 sets of SWD programming interfaces reserved on the back of the device. You will need to use **1.25mm programming probes (pogo pins)** with an ST-Link or similar tool.
+![Порты прошивки](00_Docs/Images/interface_bottom.png)
 
-![Flashing Ports](00_Docs/Images/interface_bottom.png)
+### Порядок действий:
 
-### Flashing Steps:
-1.  **Download Firmware:** Get [RoboParty-HubUsb2Can_1.00.bin](03_Firmware/RoboParty-HubUsb2Can_1.00.bin).
-2.  **Connect Programmer:** The pinout from left to right is: `GND`, `3V3`, `CLK`, `DIO`.
-3.  **Sequential Flashing:** Please flash the firmware to the **4 programming ports** on the back one by one (each port corresponds to one CAN control chip).
+1. **Скачайте прошивку:** [RoboParty-HubUsb2Can_1.00.bin](03_Firmware/RoboParty-HubUsb2Can_1.00.bin)
+2. **Подключите программатор:** Распиновка слева направо: `GND`, `3V3`, `CLK`, `DIO`
+3. **Прошейте последовательно:** Прошейте все **4 порта** на задней стороне (каждый порт — один CAN-чип)
 
-## ⚠️ Precautions
+## ⚠️ Меры предосторожности
 
-1.  **Power Safety:**
-    * **5V Power Supply ONLY.** Do not connect higher voltages.
-    * Do not forcibly insert the Type-C cable in reverse.
-2.  **Termination Resistors:**
-    * The CAN bus specification requires a **120Ω termination resistor** at the end of each bus.
-    * If your servo motors have internal resistors, no extra action is needed; otherwise, you must add a parallel resistor at the end of the chain.
-3.  **Environmental Requirements:**
-    * Avoid contact with water, conductive dust, or metal debris to prevent short circuits.
+1. **Питание:**
+   * **Только 5V.** Не подключайте более высокое напряжение.
+   * Не вставляйте Type-C кабель неправильной стороной.
 
-## 🏭 Manufacturing Downloads
+2. **Терминирующие резисторы:**
+   * По спецификации CAN требуется **120 Ω терминирующий резистор** на конце шины.
+   * Если в сервоприводах есть встроенные резисторы — дополнительных не нужно; иначе добавьте параллельный резистор в конце цепи.
 
-If you need to manufacture this module yourself, please download the following files:
+3. **Условия эксплуатации:**
+   * Избегайте контакта с водой, проводящей пылью или металлической стружкой.
 
-* **Gerber Files (PCB Fab):** [Roboto_Usb2Can_V1.0.rar](01_Gerber/Roboto_Usb2Can_V1.0.rar)
-* **Bill of Materials (BOM):** [HUB-USB2CAN_Bom.xlsx](02_Assembly/HUB-USB2CAN_Bom.xlsx)
-* **Pick & Place Coordinates (CPL):** [PickAndPlace.xlsx](02_Assembly/PickAndPlace_HUB_USBTOCAN_V1_0.xlsx)
+## 🏭 Файлы для производства
+
+| Файл | Назначение |
+|------|------------|
+| [Roboto_Usb2Can_V1.0.rar](01_Gerber/Roboto_Usb2Can_V1.0.rar) | Gerber для PCB |
+| [HUB-USB2CAN_Bom.xlsx](02_Assembly/HUB-USB2CAN_Bom.xlsx) | Спецификация компонентов |
+| [PickAndPlace_HUB_USBTOCAN_V1_0.xlsx](02_Assembly/PickAndPlace_HUB_USBTOCAN_V1_0.xlsx) | Координаты размещения |
 
 ---
-**Tech Support:** If you encounter technical issues, please contact the RoboParty technical team.
+
+**Техподдержка:** При технических проблемах обращайтесь к команде RoboParty.

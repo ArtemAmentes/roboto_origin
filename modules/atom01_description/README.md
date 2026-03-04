@@ -1,3 +1,24 @@
-There are the description files of Atom01, a product of Roboparty.
+# atom01_description
 
-![Atom01 URDF 模型](atom01_urdf.png)  
+**Описательные файлы модели Atom01** — продукта RoboParty.
+
+![Модель Atom01 URDF](atom01_urdf.png)
+
+---
+
+## Содержимое
+
+| Каталог | Описание |
+|---------|----------|
+| `urdf/` | URDF-модели робота |
+| `mjcf/` | MuJoCo-формат для симуляции |
+| `meshes/` | 3D-меши для визуализации и столкновений |
+| `terrain_assets/` | Ассеты местности для тренировки |
+
+---
+
+## Использование
+
+URDF и MJCF используются в:
+- **atom01_train** — обучение в Isaac Lab / MuJoCo
+- **atom01_deploy** — визуализация и ROS2 tf-дерево

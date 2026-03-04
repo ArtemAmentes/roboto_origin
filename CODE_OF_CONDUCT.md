@@ -1,89 +1,51 @@
-# Contributor Covenant Code of Conduct
+# Кодекс поведения участников
 
-## Our Pledge
+## Наши обязательства
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.
+Мы, как участники, контрибьюторы и лидеры, обязуемся сделать участие в нашем сообществе свободным от притеснений для всех, независимо от возраста, телосложения, видимых или невидимых ограничений, этнической принадлежности, половых признаков, гендерной идентичности и самовыражения, уровня опыта, образования, социально-экономического статуса, национальности, внешности, расы, религии или сексуальной идентичности и ориентации.
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+Мы обязуемся действовать и взаимодействовать таким образом, чтобы способствовать открытому, гостеприимному, разнообразному, инклюзивному и здоровому сообществу.
 
-## Our Standards
+## Наши стандарты
 
-Examples of behavior that contributes to creating a positive environment
-include:
+Примеры поведения, способствующего созданию позитивной среды:
 
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
+* Использование приветливого и инклюзивного языка
+* Уважение к различным точкам зрения и опыту
+* Конструктивное восприятие критики
+* Фокус на том, что лучше для сообщества
+* Проявление эмпатии к другим участникам
 
-Examples of unacceptable behavior include:
+Примеры неприемлемого поведения:
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+* Использование сексуализированного языка или изображений, сексуальное внимание или домогательства любого рода
+* Троллинг, оскорбительные или уничижительные комментарии, личные или политические нападки
+* Публичное или частное преследование
+* Публикация личной информации других лиц (физический или электронный адрес) без явного разрешения
+* Иное поведение, которое может обоснованно считаться неуместным в профессиональной среде
 
-## Our Responsibilities
+## Ответственность
 
-Project maintainers are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+Мейнтейнеры проекта несут ответственность за разъяснение и соблюдение наших стандартов приемлемого поведения и принимают соответствующие и справедливые корректирующие меры в ответ на любое неприемлемое поведение.
 
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
+Мейнтейнеры имеют право и обязанность удалять, редактировать или отклонять комментарии, коммиты, код, правки вики, issues и другие вклады, не соответствующие этому Кодексу поведения, а также временно или навсегда блокировать любого участника за поведение, которое они считают неуместным, угрожающим, оскорбительным или вредным.
 
-## Scope
+## Область применения
 
-This Code of Conduct applies within all project spaces, and it also applies when
-an individual is representing the project or its community in public spaces.
-Examples of representing a project or community include using an official
-project e-mail address, posting via an official social media account, or acting
-as an appointed representative at an online or offline event. Representation of
-a project may be further defined and clarified by project maintainers.
+Этот Кодекс поведения применяется во всех пространствах проекта, а также когда человек представляет проект или сообщество в публичных пространствах. Примеры представления проекта или сообщества включают использование официального адреса электронной почты проекта, публикации через официальную учётную запись в социальных сетях или выступление в качестве назначенного представителя на онлайн- или офлайн-мероприятии.
 
-## Enforcement
+## Применение
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at zhangbaoxin@roboparty.com. All
-complaints will be reviewed and investigated and will result in a response that
-is deemed necessary and appropriate to the circumstances. The project team
-is obligated to maintain confidentiality with regard to the reporter of an
-incident. Further details of specific enforcement policies may be posted
-separately.
+О случаях оскорбительного, притесняющего или иного неприемлемого поведения можно сообщить команде проекта. Все жалобы будут рассмотрены и расследованы, и по ним будет дан ответ, который будет сочтён необходимым и соответствующим обстоятельствам. Команда проекта обязана сохранять конфиденциальность в отношении лица, сообщившего об инциденте.
 
-Project maintainers who do not follow or enforce the Code of Conduct in good
-faith may face temporary or permanent repercussions as determined by other
-members of the project's leadership.
+Мейнтейнеры проекта, которые не следуют Кодексу поведения или не обеспечивают его соблюдение добросовестно, могут столкнуться с временными или постоянными последствиями, определёнными другими членами руководства проекта.
 
-## Attribution
+## Атрибуция
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.1, available at
-[https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][version].
+Этот Кодекс поведения адаптирован из [Contributor Covenant][homepage], версия 2.1, доступной по адресу [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][version].
 
-Community Impact Guidelines were inspired by
-[Mozilla's code of conduct enforcement ladder][mozilla coc].
-
-For answers to common questions about this code of conduct, see the FAQ at
-[https://www.contributor-covenant.org/faq][faq]. Translations are available
-at [https://www.contributor-covenant.org/translations][translations].
+Руководство по влиянию на сообщество было вдохновлено [кодексом поведения Mozilla][mozilla coc].
 
 [homepage]: https://www.contributor-covenant.org
 [version]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
 [mozilla coc]: https://github.com/mozilla/diversity
-[faq]: https://www.contributor-covenant.org/faq
-[translations]: https://www.contributor-covenant.org/translations

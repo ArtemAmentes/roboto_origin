@@ -1,37 +1,60 @@
 # roboto_origin
 
-Форк проекта [Roboparty/roboto_origin](https://github.com/Roboparty/roboto_origin) с полной русской документацией.
+**Форк проекта [Roboparty/roboto_origin](https://github.com/Roboparty/roboto_origin)** — полностью опенсорсный DIY-гуманоидный робот с русской документацией.
 
 ---
 
 ## О проекте
 
-**roboto_origin** — полностью опенсорсный DIY-гуманоидный робот (GPL v3). ROS2, Isaac Lab, Python, C++. Сборка через Taobao/Цзяличуан. Прототип разработан за 4 месяца командой RoboParty (Китай).
+| Параметр | Значение |
+|----------|----------|
+| Лицензия | GPL v3 |
+| Стек | ROS2, Isaac Lab, Python, C++ |
+| Компоненты | Taobao, Цзяличуан (Китай) |
+| Разработка | RoboParty, 4 месяца до прототипа |
+
+---
 
 ## Модули
 
-| Модуль | Описание | Репозиторий |
-|--------|----------|-------------|
-| Atom01_hardware | Конструкция, CAD, PCB, BOM | [Atom01_hardware](https://github.com/Roboparty/Atom01_hardware) |
-| atom01_deploy | ROS2-драйверы, middleware, IMU, моторы | [atom01_deploy](https://github.com/Roboparty/atom01_deploy) |
-| atom01_train | RL-алгоритмы, Isaac Lab, Sim2Sim | [atom01_train](https://github.com/Roboparty/atom01_train) |
-| atom01_description | URDF, кинематика, динамика | [atom01_description](https://github.com/Roboparty/atom01_description) |
+| Модуль | Описание | Репозиторий | README_RU |
+|--------|----------|-------------|-----------|
+| Atom01_hardware | Механика, CAD, PCB, BOM | [GitHub](https://github.com/Roboparty/Atom01_hardware) | ✅ |
+| atom01_deploy | ROS2-драйверы, IMU, моторы | [GitHub](https://github.com/Roboparty/atom01_deploy) | ✅ |
+| atom01_train | RL, Isaac Lab, Sim2Sim | [GitHub](https://github.com/Roboparty/atom01_train) | ✅ |
+| atom01_description | URDF, кинематика, MuJoCo | [GitHub](https://github.com/Roboparty/atom01_description) | ✅ |
 
 ---
 
 ## Содержание раздела
 
-- [**Архитектура репозитория**](АРХИТЕКТУРА_РЕПОЗИТОРИЯ_ROBOTO_ORIGIN.md) — схема, структура, дерево файлов, карта перевода, стратегия 100% русификации
-- [**README модулей (русский)**](README_модулей_RU.md) — описание Atom01_hardware, atom01_deploy, atom01_train, atom01_description
-- [**Перевод репозитория на русский**](ПЕРЕВОД_РЕПОЗИТОРИЯ_НА_РУССКИЙ.md) — описание цели и объёма: все файлы и комментарии в коде на русском
-- [Интеграция с OpenClaw](интеграция_openclaw.md) — связка roboto_origin + AI-агенты
-- [русская_документация/](русская_документация/) — черновики русских переводов README, CONTRIBUTING и др.
+| Документ | Описание |
+|----------|----------|
+| [Архитектура репозитория](АРХИТЕКТУРА_РЕПОЗИТОРИЯ_ROBOTO_ORIGIN.md) | Полная схема, Mermaid-диаграммы |
+| [Структура открытого репозитория](структура_открытого_репозитория.md) | Целевая структура |
+| [README модулей](README_модулей_RU.md) | Описание всех модулей Atom01 |
+| [Сборка робота](сборка_робота.md) | Quick Start, BOM, альтернативы для РФ |
+| [Интеграция с OpenClaw](интеграция_openclaw.md) | AI-агенты + roboto_origin |
 
-## Work packages по форку
+---
 
-- WP-R1: Форк/клонирование roboto_origin и sub-репозиториев
-- WP-R2: Перевод README.md → README_RU.md
-- WP-R3: Перевод CONTRIBUTING.md, CODE_OF_CONDUCT.md
-- WP-R4: Перевод Humanoid Robot Know-How Documentation
-- WP-R5: Перевод README в каждом sub-репозитории
-- WP-R6 (опц.): Docstrings и комментарии в коде на русском
+## Статус русификации
+
+Репозиторий полностью переведён на русский язык:
+
+| Элемент | Статус |
+|---------|--------|
+| README.md | ✅ Русский |
+| CONTRIBUTING.md | ✅ Русский |
+| CODE_OF_CONDUCT.md | ✅ Русский |
+| modules/*/README.md | ✅ Русский |
+| BOM.md | ✅ Русский |
+| Китайские файлы | ❌ Удалены |
+
+---
+
+## Связанные разделы
+
+- [OpenClaw](../03_openclaw/README.md) — AI-агенты для управления роботом
+- [Компонентная база](../01_обзор_проекта/компонентная_база_и_поставки.md) — поставщики в РФ
+- [Рынок гуманоидов](../01_обзор_проекта/исследование_рынка_гуманоидов.md) — сравнение с конкурентами

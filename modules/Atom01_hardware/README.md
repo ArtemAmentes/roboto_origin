@@ -1,31 +1,33 @@
-This is the central hardware repository for the **ROBOTO Bipedal Robot**. We aim to lower the barrier to entry by providing a full-stack open-source solution, from mechanical structures to core circuitry.
+# Atom01 Hardware
 
-**[🇨🇳 中文文档点这里](./README_cn.md)**
+Центральный репозиторий аппаратной части **ROBOTO Bipedal Robot**. Цель — снизить барьер входа, предоставляя полное опенсорсное решение: от механических конструкций до базовых схем.
 
-This repository consists of three core modules. Please click the links below for detailed documentation:
+Репозиторий состоит из трёх основных модулей:
 
-### 📂 Core Modules Index
+### 📂 Индекс модулей
 
-| Module Name | Description | Key Features | Documentation |
+| Модуль | Описание | Ключевые возможности | Документация |
 | :--- | :--- | :--- | :--- |
-| **🤖 Robot Body**<br>(Mechanical) | Structure & Assembly | • Beginner-friendly Guide<br>• URDF Simulation Files | [View Docs](./atom01_mechnaic/README.md) |
-| **⚡ Power Board**<br>(Distribution) | Energy Hub | • 48V Max Input<br>• XT30/XT60 Connectors<br>• Centralized Power | [View Docs](./atom01_pcb/Roboto_Power/README.md) |
-| **📡 Comm Module**<br>(USB-to-CAN) | Signal Gateway | • USB to 4-Ch CAN<br>• Linux Only<br>• 120Ω Termination | [View Docs](./atom01_pcb/Roboto_Usb2Can/README.md) |
+| **🤖 Корпус робота**<br>(Механика) | Конструкция и сборка | • Руководство для начинающих<br>• Файлы URDF для симуляции | [Документация](./atom01_mechnaic/README.md) |
+| **⚡ Силовая плата**<br>(Распределение питания) | Энергоузел | • Вход до 48 В<br>• Разъёмы XT30/XT60<br>• Централизованное питание | [Документация](./atom01_pcb/Roboto_Power/README.md) |
+| **📡 Модуль связи**<br>(USB-to-CAN) | Шлюз сигналов | • USB → 4 канала CAN<br>• Только Linux<br>• 120 Ω терминация | [Документация](./atom01_pcb/Roboto_Usb2Can/README.md) |
 
-### 🚀 Quick Start Roadmap
+### 🚀 Быстрый старт
 
-1.  **Preparation**: Download BOMs for each module, purchase parts, and order PCBs.
-2.  **Mechanical Build**: Follow the `Assembly_Guide` in the **Robot Body** folder.
-3.  **Electronics Integration**:
-    * Manufacture and install the **Power Board**.
-    * Manufacture and flash firmware for the **USB-to-CAN Module**.
-4.  **Wiring & Debug**: Connect the battery following the Power Board guide (⚠️ Check Polarity!), and connect to the host computer via the Comm Module.
+1. **Подготовка**: Скачайте BOM для каждого модуля, закажите детали и печатные платы.
+2. **Механическая сборка**: Следуйте `Assembly_Guide` в папке **Корпус робота**.
+3. **Электроника**:
+   - Изготовьте и установите **силовую плату**.
+   - Изготовьте и прошейте прошивку модуля **USB-to-CAN**.
+4. **Проводка и отладка**: Подключите аккумулятор по инструкции силовой платы (⚠️ Проверьте полярность!), подключитесь к хост-компьютеру через модуль связи.
 
 ---
 
-## 📂 Repository Structure
+## 📂 Структура репозитория
 
 ```text
-├── Roboto_Mechanical/       # [Main] Robot structure, URDF, Assembly Guides
-├── Roboto_Power/            # [Circuit] Power Distribution Board (48V)
-├── Roboto_Usb2Can/          # [Circuit] Communication Module (USB -> 4xCAN)
+├── atom01_mechnaic/         # [Основной] Конструкция робота, URDF, руководства по сборке
+├── atom01_pcb/
+│   ├── Roboto_Power/        # [Схемы] Силовая плата (48 В)
+│   └── Roboto_Usb2Can/      # [Схемы] Модуль связи (USB → 4×CAN)
+```

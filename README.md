@@ -1,129 +1,120 @@
-# ROBOTO_ORIGIN - Fully Open-Source DIY Humanoid Robot
+# ROBOTO_ORIGIN — полностью опенсорсный DIY-гуманоидный робот
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![ROS2](https://img.shields.io/badge/ROS2-Humble-silver)](https://docs.ros.org/en/humble/index.html) [![Isaac Sim](https://img.shields.io/badge/IsaacSim-4.5.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) [![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.1.1-silver)](https://isaac-sim.github.io/IsaacLab) [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html) [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/w/C++17) [![Platform](https://img.shields.io/badge/platform-linux--64-orange.svg)](https://ubuntu.com/) [![Robotics](https://img.shields.io/badge/Robotics-Humanoid-green.svg)](https://github.com/Roboparty) [![Reinforcement Learning](https://img.shields.io/badge/RL-IsaacLab-red.svg)](https://github.com/leggedrobotics/rsl_rl)
-
----
-
-**Русская версия:** [README_RU.md](README_RU.md)
-
-![Robot Overview](assets/1280X1280.JPEG)
-
-**[中文说明点这里](README_cn.md)**
-
-## Проект «Национальная платформа российской робототехники»
-
-Русскоязычная документация, исследование рынка, OpenClaw, презентация для Москвы: **[docs/](docs/)**
-
-## About Us
-
-We are **RoboParty**, founded on February 21, 2025. We started developing humanoid robots in April and completed the prototype **ROBOTO_ORIGIN** in just four months. We have always upheld the philosophy of open source. ROBOTO_ORIGIN's entire R&D process, including all structures, electronics, training, and deployment, has been open-sourced.
-
-As we advance the development of new robots, we realize that a high-performance robot cannot be achieved through DIY alone. Therefore, we have decided to officially open-source this running and jumping prototype to document our journey.
-
-> This robot can be completely assembled through Taobao procurement and Jialichuang prototyping. It can be truly assembled independently through DIY. With our open-source training and deployment code, you can easily achieve walking and running.
-
-In the future, we will gradually add the motion control algorithms implemented on this robot to the open-source repository. However, as a fully open-source robot, its functionality can be defined by the vast number of developers and users, so a creative workshop will also be launched soon.
+[![Лицензия: GPL v3](https://img.shields.io/badge/Лицензия-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![ROS2](https://img.shields.io/badge/ROS2-Humble-silver)](https://docs.ros.org/en/humble/index.html) [![Isaac Sim](https://img.shields.io/badge/IsaacSim-4.5.0-silver.svg)](https://docs.omniverse.nvidia.com/isaacsim/latest/overview.html) [![Isaac Lab](https://img.shields.io/badge/IsaacLab-2.1.1-silver)](https://isaac-sim.github.io/IsaacLab) [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3/whatsnew/3.10.html) [![C++](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/w/C++17) [![Платформа](https://img.shields.io/badge/платформа-linux--64-orange.svg)](https://ubuntu.com/)
 
 ---
 
-## Documentation
+![Обзор робота](assets/1280X1280.JPEG)
 
-**[Humanoid Robot Know-How Documentation](https://roboparty.com/roboto_origin/doc)** - Complete R&D process documentation for the prototype robot
+## О проекте
 
-### Contributing
+Это **русскоязычный форк** проекта [Roboparty/roboto_origin](https://github.com/Roboparty/roboto_origin) — полностью опенсорсного DIY-гуманоидного робота.
 
-**Important:** The `roboto_origin` repository serves as a snapshot aggregation only. All issue reporting and code contributions should be made to the individual sub-repositories.
+**RoboParty** — китайская команда, основанная 21 февраля 2025 года. За четыре месяца они создали прототип **ROBOTO_ORIGIN** и открыли весь R&D-процесс: конструкции, электронику, обучение и развёртывание.
 
-If you wish to contribute to the project, please select the appropriate sub-repository based on your contribution:
+> Робота можно полностью собрать, закупив компоненты на Taobao и изготовив детали через Цзяличуан. С открытым кодом для обучения и развёртывания вы легко добьётесь ходьбы и бега.
 
-| Sub-Repository                                                            | Contribution Areas                                                                         |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| **[Atom01_hardware](https://github.com/Roboparty/Atom01_hardware)**       | Mechanical structure design, CAD drawings, PCB design, BOM improvements                    |
-| **[atom01_deploy](https://github.com/Roboparty/atom01_deploy)**           | ROS2 driver development, middleware modules, deployment configs, IMU/motor integration     |
-| **[atom01_train](https://github.com/Roboparty/atom01_train)**             | RL algorithms, training environments, simulation configs, Sim2Sim transfer                 |
-| **[atom01_description](https://github.com/Roboparty/atom01_description)** | URDF kinematic/dynamic descriptions, visual/collision meshes, joint parameter optimization |
+---
 
-**For detailed contribution guidelines:** [CONTRIBUTING.md](CONTRIBUTING.md)
+## Документация
 
-**[BOM table](./assets/BOM_EN.md)** | **[BOM (русский)](./assets/BOM_RU.md)**
+| Раздел | Описание |
+|--------|----------|
+| **[docs/](docs/)** | Полная документация проекта |
+| **[Обзор проекта](docs/01_обзор_проекта/)** | Концепция, дорожная карта, рынок, поставщики |
+| **[roboto_origin](docs/02_roboto_origin/)** | Архитектура, модули, сборка |
+| **[OpenClaw](docs/03_openclaw/)** | AI-агенты для управления роботом |
+| **[Презентация](docs/04_презентация_москва/)** | Материалы для госзаявки |
+
+---
+
+## Участие в проекте
+
+**Важно:** Репозиторий `roboto_origin` — агрегатор снимков. Все issues и pull requests направляйте в конкретные sub-репозитории.
+
+| Sub-репозиторий | Темы для контрибьюта |
+|-----------------|----------------------|
+| **[Atom01_hardware](https://github.com/Roboparty/Atom01_hardware)** | Механика, CAD, PCB, BOM |
+| **[atom01_deploy](https://github.com/Roboparty/atom01_deploy)** | ROS2-драйверы, middleware, IMU/моторы |
+| **[atom01_train](https://github.com/Roboparty/atom01_train)** | RL-алгоритмы, Isaac Lab, Sim2Sim |
+| **[atom01_description](https://github.com/Roboparty/atom01_description)** | URDF, кинематика, динамика, меши |
+
+**Подробнее:** [CONTRIBUTING.md](CONTRIBUTING.md)
+
+**Спецификация компонентов:** [assets/BOM.md](./assets/BOM.md) (русский) | [assets/BOM_EN.md](./assets/BOM_EN.md) (английский)
 
 ---
 
 <table>
   <tr>
-    <td><img src="assets/atom01-01.gif" alt="Robot Demo GIF 1" width="100%"/></td>
-    <td><img src="assets/atom01-02.gif" alt="Robot Demo GIF 2" width="100%"/></td>
+    <td><img src="assets/atom01-01.gif" alt="Демо робота 1" width="100%"/></td>
+    <td><img src="assets/atom01-02.gif" alt="Демо робота 2" width="100%"/></td>
   </tr>
 </table>
 
-![Robot Details](assets/1280X1280.PNG)
-
-## Resource Guide
-
-### Repository Modules
-
-| Module Name            | Description                                                                                                                                               | Repository Link                                 |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| **Atom01_hardware**    | Hardware design files for Atom01 robot, including structural drawings and design materials                                                                | https://github.com/Roboparty/Atom01_hardware    |
-| **atom01_deploy**      | ROS2 deployment framework with modular architecture middleware for robot deployment and control, supporting IMU, motor drivers, inference, etc.           | https://github.com/Roboparty/atom01_deploy      |
-| **atom01_train**       | Direct IsaacLab training workflow providing high transparency and low refactoring difficulty RL training environment, supports Sim2Sim transfer to MuJoCo | https://github.com/Roboparty/atom01_train       |
-| **atom01_description** | URDF model files for Atom01 robot, containing kinematic and dynamic descriptions for simulation and visualization                                         | https://github.com/Roboparty/atom01_description |
+![Детали робота](assets/1280X1280.PNG)
 
 ---
 
-## Quick Start
+## Модули
+
+| Модуль | Описание | Репозиторий |
+|--------|----------|-------------|
+| **Atom01_hardware** | Аппаратная часть: конструкция, CAD, PCB | [GitHub](https://github.com/Roboparty/Atom01_hardware) |
+| **atom01_deploy** | ROS2-фреймворк развёртывания: драйверы, IMU, моторы | [GitHub](https://github.com/Roboparty/atom01_deploy) |
+| **atom01_train** | Обучение в IsaacLab: RL, Sim2Sim в MuJoCo | [GitHub](https://github.com/Roboparty/atom01_train) |
+| **atom01_description** | URDF-модели: кинематика, динамика, меши | [GitHub](https://github.com/Roboparty/atom01_description) |
+
+---
+
+## Быстрый старт
 
 ```bash
-# Clone repository
+# Клонировать репозиторий
 git clone https://github.com/Roboparty/roboto_origin.git
+cd roboto_origin
 
-# Update repository
+# Обновить
 git pull
 ```
 
-Navigate to each module directory `modules/...` and follow the README inside each module to continue.
+Перейдите в `modules/...` и следуйте README в каждом модуле.
 
 ---
 
-## Code of Conduct
+## Кодекс поведения
 
-This project has adopted the [Code of Conduct](CODE_OF_CONDUCT.md) to foster a welcoming and inclusive community. All contributors and users are expected to adhere to these guidelines.
-
-**[中文版行为准则](CODE_OF_CONDUCT_CN.md)**
+Проект руководствуется [Кодексом поведения](CODE_OF_CONDUCT.md) для создания гостеприимного сообщества.
 
 ---
 
-## Disclaimer
+## Отказ от ответственности
 
-### Open Source Software License and Disclaimer
+### Лицензия и ограничения
 
-This software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement.
+Программное обеспечение предоставляется «как есть», без гарантий любого рода.
 
-**Hardware Coupling Disclaimer:** The output commands generated by this software are executed on physical hardware. The consequences of any actions performed by the hardware in the physical world are the sole responsibility of the hardware operator. This software serves only as an "auxiliary tool" — the operational control lies entirely with the user. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+**Ответственность за оборудование:** Команды, генерируемые софтом, выполняются на физическом оборудовании. Последствия действий робота — ответственность оператора. Софт — лишь «вспомогательный инструмент», управление полностью на пользователе.
 
-### Secondary Development User Agreement
+### Соглашение о вторичной разработке
 
-For any use, modification, adaptation, improvement, secondary development, operation, distribution, or any other use of the open-source components by users, the user agrees to assume full responsibility. **RoboParty assumes no liability whatsoever.**
+За любое использование, модификацию, улучшение, вторичную разработку, эксплуатацию или распространение опенсорсных компонентов ответственность несёт пользователь. **RoboParty не несёт никакой ответственности.**
 
-By using, modifying, or distributing this software, you acknowledge that you understand and agree to bear all risks associated with such actions, including but not limited to: 
-- Physical injury or property damage caused by robot operation
-- Equipment damage due to improper parameter configuration
-- Accidents resulting from insufficient safety testing
-
----
-
-**This project is licensed under the GNU General Public License Version 3 (GPLv3). See [LICENSE](LICENSE) for details.**
+Используя, модифицируя или распространяя это ПО, вы соглашаетесь нести все связанные риски:
+- Травмы или материальный ущерб от работы робота
+- Повреждение оборудования из-за неправильной конфигурации
+- Аварии из-за недостаточного тестирования безопасности
 
 ---
 
-![Star History Chart](https://api.star-history.com/svg?repos=Roboparty/roboto_origin&type=Date)
+**Проект распространяется под лицензией GNU General Public License Version 3 (GPLv3). См. [LICENSE](LICENSE).**
 
 ---
 
-## Contributors
+## Участники
 
-Thanks to all the people who contribute to this project!
+Благодарим всех, кто вносит вклад в проект!
 
 <a href="https://github.com/Roboparty/roboto_origin/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Roboparty/roboto_origin" alt="Contributors"/>
+  <img src="https://contrib.rocks/image?repo=Roboparty/roboto_origin" alt="Участники"/>
 </a>

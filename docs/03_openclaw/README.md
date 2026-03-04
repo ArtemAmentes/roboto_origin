@@ -1,16 +1,21 @@
 # OpenClaw
 
-Платформа AI-агентов для управления роботом на естественном языке.
+**Платформа AI-агентов для управления роботом на естественном языке.**
 
 ---
 
 ## Что такое OpenClaw
 
-[OpenClaw](https://openclaw.ai/) — опенсорсная (MIT) платформа. Шлюз между мессенджерами (WhatsApp, Telegram, Discord) и кодирующими агентами (Pi, Claude Code и др.). Self-hosted, multi-channel.
+| Параметр | Значение |
+|----------|----------|
+| Сайт | [openclaw.ai](https://openclaw.ai/) |
+| Лицензия | MIT |
+| Развёртывание | Self-hosted |
+| Каналы | Telegram, WhatsApp, Discord, веб |
 
 **Ключевые возможности:**
 - Агенты с tool use, sessions, memory
-- Подключение из кармана: Telegram, WhatsApp, Discord
+- Подключение из кармана через мессенджеры
 - Данные на вашем сервере
 
 ---
@@ -19,16 +24,27 @@
 
 [OpenClaw Robotics](https://www.openclawrobotics.com/) — сообщество адаптирует платформу под embodied AI:
 
-- **Zero-code robotics:** «возьми красный кубик и положи в коробку» — без написания кода
-- **ClawBody:** мост к физическому железу, MuJoCo для симуляции
-- **Модели:** Gemini Robotics-ER, Qwen VLM — понимание физического мира
-- **Depth:** Intel RealSense + Qwen VLM для 3D-восприятия
+| Компонент | Назначение |
+|-----------|------------|
+| **Zero-code robotics** | «Возьми красный кубик» — без написания кода |
+| **ClawBody** | Мост к физическому железу, MuJoCo-симуляция |
+| **Vision-language** | Gemini Robotics-ER, Qwen VLM |
+| **Depth** | Intel RealSense + Qwen VLM для 3D-восприятия |
 
 ---
 
 ## Содержание раздела
 
-- [**Стратегия интеграции OpenClaw**](стратегия_интеграции_openclaw.md) — как использовать OpenClaw для написания и модернизации кода управления роботом, регулярные апдейты репозитория
-- [Установка и настройка](установка_и_настройка.md)
-- [ClawBody и адаптация под atom01](clawbody_и_адаптация.md)
-- [Skill «управление роботом»](skill_управление_роботом.md)
+| Документ | Описание |
+|----------|----------|
+| [Стратегия интеграции OpenClaw](стратегия_интеграции_openclaw.md) | Использование OpenClaw для кода управления |
+| [Установка и настройка](установка_и_настройка.md) | Self-hosted deployment |
+| [ClawBody и адаптация](clawbody_и_адаптация.md) | Мост OpenClaw → atom01 |
+| [Skill «управление роботом»](skill_управление_роботом.md) | API для агентов |
+
+---
+
+## Связанные разделы
+
+- [roboto_origin](../02_roboto_origin/README.md) — платформа исполнения
+- [Интеграция OpenClaw + roboto_origin](../02_roboto_origin/интеграция_openclaw.md) — архитектура связки

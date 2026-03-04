@@ -1,150 +1,146 @@
-# Contributing to ROBOTO_ORIGIN
+# Участие в проекте ROBOTO_ORIGIN
 
-Thank you for your interest in contributing to ROBOTO_ORIGIN! This document provides guidelines and instructions for contributing to the project.
+Благодарим за интерес к проекту ROBOTO_ORIGIN! Этот документ описывает правила и инструкции для участников.
 
-## Important Note About Repository Structure
+## Важно: структура репозитория
 
-**The `roboto_origin` repository is a snapshot-only repository.**
+**Репозиторий `roboto_origin` — это агрегатор снимков.**
 
-This repository serves as a daily-updated aggregation snapshot of all sub-repositories. It is designed to provide users with a complete, ready-to-use codebase without requiring additional submodule initialization.
+Репозиторий ежедневно обновляется из sub-репозиториев. Он предоставляет пользователям полную, готовую к использованию кодовую базу без необходимости инициализации submodules.
 
-### What This Means for Contributors
+### Что это значит для участников
 
-- **DO NOT** submit pull requests or issues to `roboto_origin`
-- **DO** submit contributions to the specific sub-repository where your changes belong
-- The main repository will automatically update its snapshot from sub-repositories
+- **НЕ** отправляйте pull request и issues в `roboto_origin`
+- **ОТПРАВЛЯЙТЕ** вклад в конкретный sub-репозиторий, к которому относятся ваши изменения
+- Основной репозиторий автоматически обновляет снимок из sub-репозиториев
 
-## How to Contribute
+## Как внести вклад
 
-### 1. Identify the Correct Sub-Repository
+### 1. Определите нужный sub-репозиторий
 
-Review the module descriptions below to determine which sub-repository your contribution should target:
+| Sub-репозиторий | Назначение | Темы для контрибьюта |
+|-----------------|------------|----------------------|
+| **[Atom01_hardware](https://github.com/Roboparty/Atom01_hardware)** | Аппаратная часть | Механика, CAD, PCB, BOM |
+| **[atom01_deploy](https://github.com/Roboparty/atom01_deploy)** | ROS2 развёртывание | Драйверы, middleware, конфигурации, IMU/моторы |
+| **[atom01_train](https://github.com/Roboparty/atom01_train)** | Обучение в IsaacLab | RL-алгоритмы, среды, Sim2Sim |
+| **[atom01_description](https://github.com/Roboparty/atom01_description)** | URDF-модели | Кинематика, динамика, меши, параметры сочленений |
 
-| Sub-Repository                                                            | Purpose                    | Contribution Topics                                                                      |
-| ------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------- |
-| **[Atom01_hardware](https://github.com/Roboparty/Atom01_hardware)**       | Hardware design files      | Mechanical structures, CAD drawings, PCB designs, BOM improvements                       |
-| **[atom01_deploy](https://github.com/Roboparty/atom01_deploy)**           | ROS2 deployment framework  | Driver development, middleware modules, deployment configurations, IMU/motor integration |
-| **[atom01_train](https://github.com/Roboparty/atom01_train)**             | IsaacLab training workflow | RL algorithms, training environments, simulation configs, Sim2Sim transfer               |
-| **[atom01_description](https://github.com/Roboparty/atom01_description)** | URDF robot models          | Kinematic/dynamic descriptions, visual/collision meshes, joint parameters                |
-
-### 2. Fork and Clone the Target Sub-Repository
+### 2. Форк и клонирование
 
 ```bash
-# Fork the sub-repository on GitHub, then clone it
-git clone https://github.com/YOUR_USERNAME/<sub-repo-name>.git
+# Сделайте форк sub-репозитория на GitHub, затем клонируйте
+git clone https://github.com/ВАШ_ЛОГИН/<sub-repo-name>.git
 cd <sub-repo-name>
 
-# Add upstream remote
+# Добавьте upstream remote
 git remote add upstream https://github.com/Roboparty/<sub-repo-name>.git
 ```
 
-### 3. Create a Feature Branch
+### 3. Создайте ветку
 
 ```bash
-git checkout -b feature/your-feature-name
-# or
-git checkout -b fix/bug-fix-name
+git checkout -b feature/название-фичи
+# или
+git checkout -b fix/название-бага
 ```
 
-### 4. Make Your Changes
+### 4. Внесите изменения
 
-- Write clean, documented code following the repository's existing style
-- Add tests if applicable
-- Update documentation as needed
-- Commit your changes with clear, descriptive messages
+- Пишите чистый, документированный код в стиле репозитория
+- Добавляйте тесты при необходимости
+- Обновляйте документацию
+- Коммитьте с понятными сообщениями
 
-### 5. Submit a Pull Request
+### 5. Отправьте Pull Request
 
 ```bash
-git push origin feature/your-feature-name
+git push origin feature/название-фичи
 ```
 
-Then open a pull request on the sub-repository's GitHub page.
+Затем откройте pull request на странице sub-репозитория.
 
-## Contribution Guidelines
+## Требования к коду
 
-### Code Quality
+### Качество кода
 
-- Follow existing code style and conventions in each sub-repository
-- Write meaningful commit messages
-- Add comments for complex logic
-- Test your changes thoroughly before submitting
+- Следуйте стилю кода в каждом sub-репозитории
+- Пишите понятные сообщения коммитов
+- Комментируйте сложную логику
+- Тестируйте изменения перед отправкой
 
-### Documentation
+### Документация
 
-- Update relevant documentation when making changes
-- Include usage examples for new features
-- Document API changes in code comments
+- Обновляйте документацию при изменениях
+- Добавляйте примеры для новых функций
+- Документируйте изменения API в комментариях
 
-### Issue Reporting
+### Сообщения об ошибках
 
-When reporting bugs or requesting features:
+При сообщении об ошибках или запросе функций:
 
-1. Navigate to the appropriate sub-repository's Issues tab
-2. Search existing issues to avoid duplicates
-3. Use clear, descriptive titles
-4. Provide detailed information:
-   - Environment details (OS, software versions)
-   - Steps to reproduce (for bugs)
-   - Expected vs. actual behavior
-   - Relevant logs or screenshots
+1. Перейдите во вкладку Issues нужного sub-репозитория
+2. Проверьте существующие issues, чтобы избежать дублей
+3. Используйте понятные заголовки
+4. Укажите детали:
+   - Окружение (ОС, версии ПО)
+   - Шаги воспроизведения (для багов)
+   - Ожидаемое vs фактическое поведение
+   - Логи или скриншоты
 
-### License
+### Лицензия
 
-All contributions are subject to the GPLv3 license. By contributing, you agree that your contributions will be licensed under the same terms as the project.
+Все вклады подчиняются лицензии GPLv3. Отправляя вклад, вы соглашаетесь с этими условиями.
 
-## Development Workflow
+## Рабочий процесс
 
-### For Users
+### Для пользователей
 
-If you want to use or build upon the ROBOTO_ORIGIN project:
+Если хотите использовать проект ROBOTO_ORIGIN:
 
-1. Clone this repository:
+1. Клонируйте репозиторий:
    ```bash
    git clone https://github.com/Roboparty/roboto_origin.git
    ```
 
-2. All code is immediately available - no submodule initialization needed
+2. Весь код сразу доступен — инициализация submodules не нужна
 
-3. Navigate to individual modules in `modules/` directory
+3. Перейдите в нужные модули в `modules/`
 
-4. Follow README instructions in each module
+4. Следуйте README в каждом модуле
 
-### For Maintainers
+### Для мейнтейнеров
 
-The `sync_subtrees.sh` script is used to update the snapshot:
+Скрипт `sync_subtrees.sh` обновляет снимок:
 
 ```bash
 ./sync_subtrees.sh
 ```
 
-This script:
-- Pulls latest changes from all sub-repositories
-- Updates subtree snapshots in `modules/` directory
-- Flattens all submodule code into trackable files
-- Commits the updated snapshot
+Скрипт:
+- Получает последние изменения из sub-репозиториев
+- Обновляет снимки в `modules/`
+- Коммитит обновлённый снимок
 
-The script runs daily to keep the main repository synchronized.
+Скрипт запускается ежедневно для синхронизации.
 
-## Community Guidelines
+## Правила сообщества
 
-- Be respectful and constructive in all interactions
-- Welcome new contributors and help them get started
-- Focus on what is best for the community
-- Show empathy towards other community members
+- Будьте уважительны и конструктивны
+- Помогайте новым участникам
+- Делайте то, что лучше для сообщества
+- Проявляйте эмпатию
 
-For detailed community guidelines, please refer to our [Code of Conduct](CODE_OF_CONDUCT.md).
+Подробнее: [Кодекс поведения](CODE_OF_CONDUCT.md).
 
-## Getting Help
+## Помощь
 
-- **QQ Group:** 1078670917
-- **Email:** zhangbaoxin@roboparty.com
-- **GitHub Issues:** Post in the appropriate sub-repository
+- **GitHub Issues:** в соответствующем sub-репозитории
+- **Документация:** [docs/](docs/)
 
-## Recognition
+## Благодарности
 
-Contributors who make significant improvements will be recognized in the project documentation. Thank you for helping make ROBOTO_ORIGIN better!
+Участники, внёсшие значительный вклад, будут отмечены в документации проекта. Спасибо за помощь в развитии ROBOTO_ORIGIN!
 
 ---
 
-**Remember:** All contributions must be made to the specific sub-repositories, not to this main snapshot repository.
+**Помните:** все вклады должны направляться в конкретные sub-репозитории, а не в основной репозиторий-снимок.
